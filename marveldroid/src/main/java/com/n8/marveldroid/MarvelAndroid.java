@@ -57,6 +57,14 @@ public class MarvelAndroid {
                                   @NonNull String publicKey,
                                   @IntRange(from = 0) long cacheSize) {
 
+        if (applicationContext == null) {
+            throw new IllegalArgumentException("Context cannot be null");
+        }else if (privateKey == null || privateKey.equals("")) {
+            throw new IllegalArgumentException("PrivateKey must be non-null and non-empty");
+        }else if (publicKey == null || publicKey.equals("")) {
+            throw new IllegalArgumentException("PublicKey must be non-null and non-empty");
+        }
+
         sPrivateKey = privateKey;
         sPublicKey = publicKey;
         sContext = applicationContext;
