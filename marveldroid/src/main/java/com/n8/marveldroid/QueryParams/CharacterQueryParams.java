@@ -1,24 +1,42 @@
 package com.n8.marveldroid.QueryParams;
 
-import com.n8.marveldroid.RequestSignature;
-
 import java.util.Date;
 import java.util.List;
 
 public class CharacterQueryParams extends BaseQueryParams {
 
+    public enum OrderBy {
+        Name("name"),
+        Date("date"),
+        NameDescending("-name"),
+        DateDescending("-date"),
+        Default("");
+
+        private String value;
+
+        OrderBy(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+    }
+
     private String name;
     private String nameStartsWith;
+
     private Date modifiedSince;
+
     private List<Integer> comics;
     private List<Integer> series;
     private List<Integer> events;
     private List<Integer> stories;
+
     private OrderBy orderBy;
 
 
-    public CharacterQueryParams(){
-        super(RequestSignature.create());
+    public CharacterQueryParams() {
         orderBy = OrderBy.Default;
     }
 
@@ -46,7 +64,7 @@ public class CharacterQueryParams extends BaseQueryParams {
         this.modifiedSince = modifiedSince;
     }
 
-    public List<Integer>getComics(){
+    public List<Integer> getComics() {
         return this.comics;
     }
 
@@ -85,25 +103,5 @@ public class CharacterQueryParams extends BaseQueryParams {
     public void setOrderBy(OrderBy orderBy) {
         this.orderBy = orderBy;
     }
-
-
-    public enum OrderBy {
-        Default("")
-        ,Name ("name")
-        ,NameDescending("-name")
-        ,Date("date")
-        ,DateDescending("-date");
-
-        private String value;
-
-        OrderBy(String value){
-            this.value = value;
-        }
-
-        public String getValue(){
-            return this.value;
-        }
-    }
-
 
 }

@@ -1,7 +1,6 @@
 package com.n8.marveldroid.RequestServices;
 
 import com.n8.marveldroid.EntityModelObjects.Character;
-import com.n8.marveldroid.EntityModelObjects.Comic;
 import com.n8.marveldroid.ServiceResponse;
 
 import java.util.Date;
