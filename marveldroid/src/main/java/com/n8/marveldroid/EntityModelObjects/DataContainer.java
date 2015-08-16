@@ -1,4 +1,4 @@
-package com.n8.marveldroid.RequestServices;
+package com.n8.marveldroid.EntityModelObjects;
 
 import java.util.List;
 

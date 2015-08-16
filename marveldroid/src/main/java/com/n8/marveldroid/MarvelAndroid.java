@@ -1,23 +1,21 @@
 package com.n8.marveldroid;
 
-import android.app.Service;
 import android.content.Context;
 import android.util.Log;
 
 import com.google.common.base.Joiner;
-import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.n8.marveldroid.Endpoints.CharacterEndpoint;
 import com.n8.marveldroid.EntityModelObjects.Character;
 import com.n8.marveldroid.EntityModelObjects.Comic;
-import com.n8.marveldroid.RequestServices.CharacterQueryParams;
+import com.n8.marveldroid.QueryParams.CharacterQueryParams;
 import com.n8.marveldroid.RequestServices.CharacterService;
-import com.n8.marveldroid.RequestServices.ComicQueryParams;
-import com.n8.marveldroid.RequestServices.ServiceResponse;
+import com.n8.marveldroid.QueryParams.ComicQueryParams;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -60,6 +58,8 @@ public class MarvelAndroid {
 
     private RestAdapter mRestAdapter;
 
+    private CharacterEndpoint mCharacterEndpoint;
+
     public static MarvelAndroid getInstance() {
         return sInstance;
     }
@@ -71,6 +71,14 @@ public class MarvelAndroid {
         sCacheSize = cacheSize;
 
         sInstance = new MarvelAndroid();
+    }
+
+    public CharacterEndpoint getCharacterEndpoint() {
+        if (mCharacterEndpoint == null) {
+            characters = mRestAdapter.create(CharacterService.class);
+            mCharacterEndpoint = new CharacterEndpoint(characters);
+        }
+        return mCharacterEndpoint;
     }
 
     private MarvelAndroid(){
@@ -99,39 +107,13 @@ public class MarvelAndroid {
                 .setEndpoint(API_URL)
                 .build();
 
-        characters = mRestAdapter.create(CharacterService.class);
     }
 
     public RestAdapter getRestAdapter(){
         return mRestAdapter;
     }
 
-    public void getCharacters(CharacterQueryParams queryParams, final ResponseCallback<Character> callback) {
-        characters.getCharacters(queryParams.getLimit()
-            , queryParams.getOffset()
-            , String.valueOf(queryParams.getTimestamp())
-            , queryParams.getApiKey()
-            , queryParams.getHashSignature()
-            , queryParams.getName()
-            , queryParams.getNameStartsWith()
-            , queryParams.getModifiedSince()
-            , parameterizeList(queryParams.getStories())
-            , parameterizeList(queryParams.getSeries())
-            , parameterizeList(queryParams.getEvents())
-            , queryParams.getOrderBy().getValue()
-            , new Callback<ServiceResponse<Character>>() {
-          @Override
-          public void success(
-              ServiceResponse<Character> characterServiceResponse, Response response) {
-            callback.onRequestComplete(characterServiceResponse.data.results, null);
-          }
 
-          @Override
-          public void failure(RetrofitError error) {
-            callback.onRequestComplete(null, new Throwable(error.getLocalizedMessage()));
-          }
-        });
-    }
 
   public void getComicsForCharacterId(int characterId, ComicQueryParams queryParams, Callback<ServiceResponse<Comic>> callback) {
     characters.getComicsForCharacterId(characterId
@@ -194,15 +176,6 @@ public class MarvelAndroid {
         , parameterizeList(queryParams.getCollaborators())
         , queryParams.getOrderBy().getValue());
   }
-
-    private String parameterizeList(List<?> list) {
-        if (list == null) {
-            return null;
-        }
-
-        Joiner joiner = Joiner.on(',');
-        return joiner.join(list);
-    }
 
   private class DateAdapter implements JsonDeserializer<Date> {
 
