@@ -20,22 +20,23 @@ public class RequestSignature {
     private long timeStamp;
     private String hashSignature;
 
-    public static void initialize(String privateKey, String publicKey){
+    public static void initialize(String privateKey, String publicKey) {
         sPublicKey = publicKey;
         sPrivateKey = privateKey;
     }
 
-    private RequestSignature(){
+    private RequestSignature() {
         timeStamp = sCalendar.getTimeInMillis() / 1000L;
         hashSignature = createhash(String.valueOf(timeStamp) + sPrivateKey + sPublicKey);
     }
 
     /**
      * Returnes a new instance of a request signature.
+     *
      * @return
      */
-    public static RequestSignature create(){
-        return  new RequestSignature();
+    public static RequestSignature create() {
+        return new RequestSignature();
     }
 
     public String getHashSignature() {
