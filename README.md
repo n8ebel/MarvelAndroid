@@ -4,10 +4,43 @@ Android library to work with the [Marvel Comics Api](http://developer.marvel.com
 
 This project is currently under development.
 
+- [x] Character endpoint
+- [ ] Comic
+- [ ] Creator
+- [ ] Event
+- [ ] Series
+- [ ] Stories
+
 I plan to support two patterns of network calls:
 
 - Asynchronous callback
 - RxJava observables
+ 
+## Example Usage
+
+```
+MarvelAndroid.initialize(context, "YOUR_PRIVATE_KEY", "YOUR_PUBLIC_KEY", cache_size);
+CharacterEndpoint characterEndpoint = MarvelAndroid.getInstance().getCharacterEndpoint();
+
+CharacterQueryParams queryParams = new CharacterQueryParams();
+queryParams.setNameStartsWith("spider");
+
+// Callback
+characterEndpoint.getCharacters(queryParams, new Callback<ServiceResponse<Character>>() {
+            @Override
+            public void success(ServiceResponse<Character> characterServiceResponse, Response response) {
+                
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+        
+// RxJava Observable
+Observable<ServiceResponse<Character>> observable = characterEndpoint.getCharacters(queryParams);
+```
 
 ## License
 ```
