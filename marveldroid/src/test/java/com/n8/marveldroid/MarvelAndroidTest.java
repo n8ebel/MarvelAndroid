@@ -30,6 +30,7 @@ public class MarvelAndroidTest {
 
     public static final String PRIVATE_KEY = "private_key";
     public static final String PUBLIC_KEY = "public_key";
+
     @Mock
     Context mFakeContext;
 

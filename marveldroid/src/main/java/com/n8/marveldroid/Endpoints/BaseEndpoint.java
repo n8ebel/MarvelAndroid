@@ -7,6 +7,15 @@ import java.util.List;
 
 public class BaseEndpoint {
 
+    public static String getJoinedList(List<?> list) {
+        if (list == null) {
+            return null;
+        }
+
+        Joiner joiner = Joiner.on(',');
+        return joiner.join(list);
+    }
+
     protected RequestSignature mRequestSignature;
 
     public BaseEndpoint() {
@@ -23,14 +32,5 @@ public class BaseEndpoint {
 
     protected String getApiKey() {
         return RequestSignature.sPublicKey;
-    }
-
-    protected String getJoinedList(List<?> list) {
-        if (list == null) {
-            return null;
-        }
-
-        Joiner joiner = Joiner.on(',');
-        return joiner.join(list);
     }
 }

@@ -151,7 +151,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param callback    Notifies caller when request is complete
      */
     public void getWithEventId(int eventId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
-        mCharacterService.getCharactersForComicId(
+        mCharacterService.getCharactersForEventId(
                 eventId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -176,7 +176,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<ServiceResponse<Character>> getWithEventId(int eventId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForComicId(
+        return mCharacterService.getCharactersForEventId(
                 eventId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -200,7 +200,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param callback    Notifies caller when request is complete
      */
     public void getWithSeries(int seriesId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
-        mCharacterService.getCharactersForComicId(
+        mCharacterService.getCharactersForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -225,7 +225,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<ServiceResponse<Character>> getWithSeries(int seriesId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForComicId(
+        return mCharacterService.getCharactersForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -249,7 +249,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param callback    Notifies caller when request is complete
      */
     public void getWithStoryId(int storyId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
-        mCharacterService.getCharactersForComicId(
+        mCharacterService.getCharactersForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -274,7 +274,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<ServiceResponse<Character>> getWithStoryId(int storyId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForComicId(
+        return mCharacterService.getCharactersForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
