@@ -123,7 +123,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetComicsWithIdServiceCallbackMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        mCharacterEndpoint.getWithComicId(OTHER_ID, queryParams, null);
+        mCharacterEndpoint.getCharactersForComicId(OTHER_ID, queryParams, null);
 
         Mockito.verify(mockCharacterService).getCharactersForComicId(
                 OTHER_ID,
@@ -145,7 +145,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetComicsWithIdServiceObservableMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getWithComicId(OTHER_ID, queryParams);
+        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getCharactersForComicId(OTHER_ID, queryParams);
 
         Mockito.verify(mockCharacterService).getCharactersForComicId(
                 OTHER_ID,
@@ -166,7 +166,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetCharactersEventIdServiceCallbackMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        mCharacterEndpoint.getWithEventId(OTHER_ID, queryParams, null);
+        mCharacterEndpoint.getCharactersForEventId(OTHER_ID, queryParams, null);
 
         Mockito.verify(mockCharacterService).getCharactersForEventId(
                 OTHER_ID,
@@ -188,7 +188,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetCharactersEventIdServiceObservableMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getWithEventId(OTHER_ID, queryParams);
+        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getCharactersForEventId(OTHER_ID, queryParams);
 
         Mockito.verify(mockCharacterService).getCharactersForEventId(
                 OTHER_ID,
@@ -209,7 +209,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetCharactersSeriesIdServiceCallbackMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        mCharacterEndpoint.getWithSeries(OTHER_ID, queryParams, null);
+        mCharacterEndpoint.getCharactersForSeriesId(OTHER_ID, queryParams, null);
 
         Mockito.verify(mockCharacterService).getCharactersForSeriesId(
                 OTHER_ID,
@@ -231,7 +231,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetCharactersSeriesIdServiceObservableMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getWithSeries(OTHER_ID, queryParams);
+        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getCharactersForSeriesId(OTHER_ID, queryParams);
 
         Mockito.verify(mockCharacterService).getCharactersForSeriesId(
                 OTHER_ID,
@@ -252,7 +252,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetCharactersStoryIdServiceCallbackMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        mCharacterEndpoint.getWithStoryId(OTHER_ID, queryParams, null);
+        mCharacterEndpoint.getCharactersForStoryId(OTHER_ID, queryParams, null);
 
         Mockito.verify(mockCharacterService).getCharactersForStoryId(
                 OTHER_ID,
@@ -274,7 +274,7 @@ public class CharacterEndpointTest {
     @Test
     public void testGetCharactersStoryIdServiceObservableMethodCalled() throws Exception {
         CharacterQueryParams queryParams = createBasicQueryParams();
-        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getWithStoryId(OTHER_ID, queryParams);
+        Observable<ServiceResponse<Character>> observable = mCharacterEndpoint.getCharactersForStoryId(OTHER_ID, queryParams);
 
         Mockito.verify(mockCharacterService).getCharactersForStoryId(
                 OTHER_ID,
