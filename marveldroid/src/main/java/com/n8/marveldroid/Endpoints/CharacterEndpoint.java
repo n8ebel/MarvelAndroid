@@ -19,7 +19,7 @@ public class CharacterEndpoint extends BaseEndpoint {
     }
 
     /**
-     * Retreives a {@link Character} for the specified character id.
+     * Retrieves a {@link Character} for the specified character id.
      *
      * @param characterId Unique identifier of the character to retrieve.
      * @param callback    Notifies caller when request is complete

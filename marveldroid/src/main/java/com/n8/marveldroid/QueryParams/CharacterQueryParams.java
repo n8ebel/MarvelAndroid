@@ -6,20 +6,20 @@ import java.util.List;
 public class CharacterQueryParams extends BaseQueryParams {
 
     public enum OrderBy {
+        Default(null),
         Name("name"),
         Date("date"),
         NameDescending("-name"),
-        DateDescending("-date"),
-        Default("");
+        DateDescending("-date");
 
-        private String value;
+        private String mValue;
 
         OrderBy(String value) {
-            this.value = value;
+            mValue = value;
         }
 
         public String getValue() {
-            return this.value;
+            return mValue;
         }
     }
 
@@ -37,6 +37,7 @@ public class CharacterQueryParams extends BaseQueryParams {
 
 
     public CharacterQueryParams() {
+        super();
         orderBy = OrderBy.Default;
     }
 
