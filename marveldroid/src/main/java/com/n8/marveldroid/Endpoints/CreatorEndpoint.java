@@ -109,7 +109,7 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
-    public Observable<ServiceResponse<Creator>>  getCreatorsForComicId(int comicId, CreatorQueryParams queryParams) {
+    public Observable<ServiceResponse<Creator>> getCreatorsForComicId(int comicId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForComicId(
                 comicId,
                 String.valueOf(getTimestamp()),
@@ -203,7 +203,7 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
-    public Observable<ServiceResponse<Creator>>  getCreatorsForSeriesId(int seriesId, CreatorQueryParams queryParams) {
+    public Observable<ServiceResponse<Creator>> getCreatorsForSeriesId(int seriesId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
@@ -250,7 +250,7 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
-    public Observable<ServiceResponse<Creator>>  getCreatorsForStoryId(int storyId, CreatorQueryParams queryParams) {
+    public Observable<ServiceResponse<Creator>> getCreatorsForStoryId(int storyId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
