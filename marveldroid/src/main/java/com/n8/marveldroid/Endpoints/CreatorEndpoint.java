@@ -20,6 +20,12 @@ public class CreatorEndpoint extends BaseEndpoint {
         mCreatorService = creatorService;
     }
 
+    /**
+     * Retrieves a {@link Creator} for the specified creatorId
+     *
+     * @param creatorId Unique identifier of the creator to retrieve
+     * @param callback  Notifes caller when the request is complete
+     */
     public void getCreator(int creatorId, Callback<ServiceResponse<Creator>> callback) {
         mCreatorService.getCreatorForId(
                 creatorId,
@@ -30,6 +36,13 @@ public class CreatorEndpoint extends BaseEndpoint {
 
     }
 
+    /**
+     * Retrieves a {@link Creator} for the specified creatorId
+     *
+     * @param creatorId Unique identifier of the creator to retrieve
+     *
+     * @return An observable of the creator {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Creator>> getCreator(int creatorId) {
         return mCreatorService.getCreatorForId(
                 creatorId,
@@ -38,6 +51,12 @@ public class CreatorEndpoint extends BaseEndpoint {
                 getHashSignature());
     }
 
+    /**
+     * Retrieves a list of {@link Creator}
+     *
+     * @param queryParams   Defines the query used to search for and return creators
+     * @param callback  Notifies caller when request is complete
+     */
     public void getCreators(CreatorQueryParams queryParams, Callback<ServiceResponse<Creator>> callback) {
         mCreatorService.getCreators(
                 String.valueOf(getTimestamp()),
@@ -62,6 +81,13 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
+    /**
+     * Retrieves a list of {@link Creator}
+     *
+     * @param queryParams   Defines the query used to search for and return creators
+     *
+     * @return An observable of the creator {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Creator>> getCreators(CreatorQueryParams queryParams) {
         return mCreatorService.getCreators(
                 String.valueOf(getTimestamp()),
@@ -85,6 +111,13 @@ public class CreatorEndpoint extends BaseEndpoint {
                 queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified comicId
+     *
+     * @param comicId   Unique identifier of the comic to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     * @param callback  Notifies caller when request is complete
+     */
     public void getCreatorsForComicId(int comicId, CreatorQueryParams queryParams, Callback<ServiceResponse<Creator>> callback) {
         mCreatorService.getCreatorsForComicId(
                 comicId,
@@ -109,6 +142,14 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified comicId
+     *
+     * @param comicId   Unique identifier of the comic to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     *
+     * @return An observable of the creator {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Creator>> getCreatorsForComicId(int comicId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForComicId(
                 comicId,
@@ -132,6 +173,13 @@ public class CreatorEndpoint extends BaseEndpoint {
                 queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified eventId
+     *
+     * @param eventId   Unique identifier of the event to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     * @param callback  Notifies caller when request is complete
+     */
     public void getCreatorsForEventId(int eventId, CreatorQueryParams queryParams, Callback<ServiceResponse<Creator>> callback) {
         mCreatorService.getCreatorsForEventId(
                 eventId,
@@ -156,6 +204,14 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified eventId
+     *
+     * @param eventId   Unique identifier of the event to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     *
+     * @return An observable of the creator {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Creator>> getCreatorsForEventId(int eventId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForEventId(
                 eventId,
@@ -179,6 +235,13 @@ public class CreatorEndpoint extends BaseEndpoint {
                 queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified series
+     *
+     * @param seriesId   Unique identifier of the series to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     * @param callback  Notifies caller when request is complete
+     */
     public void getCreatorsForSeriesId(int seriesId, CreatorQueryParams queryParams, Callback<ServiceResponse<Creator>> callback) {
         mCreatorService.getCreatorsForSeriesId(
                 seriesId,
@@ -203,6 +266,14 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified seriesId
+     *
+     * @param seriesId   Unique identifier of the series to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     *
+     * @return An observable of the creator {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Creator>> getCreatorsForSeriesId(int seriesId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForSeriesId(
                 seriesId,
@@ -226,6 +297,13 @@ public class CreatorEndpoint extends BaseEndpoint {
                 queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified storyId
+     *
+     * @param storyId   Unique identifier of the story to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     * @param callback  Notifies caller when request is complete
+     */
     public void getCreatorsForStoryId(int storyId, CreatorQueryParams queryParams, Callback<ServiceResponse<Creator>> callback) {
         mCreatorService.getCreatorsForStoryId(
                 storyId,
@@ -250,6 +328,14 @@ public class CreatorEndpoint extends BaseEndpoint {
                 callback);
     }
 
+    /**
+     * Retrieves a list of {@link Creator} for the specified storyId
+     *
+     * @param storyId   Unique identifier of the story to retrieve creators for
+     * @param queryParams   Defines the query used to search for and return creators
+     *
+     * @return An observable of the creator {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Creator>> getCreatorsForStoryId(int storyId, CreatorQueryParams queryParams) {
         return mCreatorService.getCreatorsForStoryId(
                 storyId,
