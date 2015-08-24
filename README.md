@@ -7,7 +7,7 @@ This project is currently under development.
 - [x] Character endpoint
 - [x] Comic
 - [x] Creator
-- [ ] Event
+- [x] Event
 - [ ] Series
 - [ ] Stories
 
