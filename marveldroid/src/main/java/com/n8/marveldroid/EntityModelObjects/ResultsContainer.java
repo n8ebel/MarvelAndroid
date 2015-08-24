@@ -2,7 +2,7 @@ package com.n8.marveldroid.EntityModelObjects;
 
 import java.util.List;
 
-public class DataContainer<T> {
+public class ResultsContainer<T> {
     public int offset;
 
     public int limit;

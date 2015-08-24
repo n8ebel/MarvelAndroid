@@ -126,10 +126,10 @@ public class MarvelAndroid {
                 try {
                     return new SimpleDateFormat(format, Locale.US).parse(jsonElement.getAsString());
                 } catch (ParseException e) {
-                    Log.d(TAG, "Caught ParseException for format: " + format);
+                    Log.d(TAG, "ParseException for format: " + format);
                 }
             }
-            throw new JsonParseException("Unparseable date: \"" + jsonElement.getAsString()
+            throw new JsonParseException("Failed to parse date: \"" + jsonElement.getAsString()
                     + "\". Supported formats: " + Arrays.toString(DATE_FORMATS));
         }
     }

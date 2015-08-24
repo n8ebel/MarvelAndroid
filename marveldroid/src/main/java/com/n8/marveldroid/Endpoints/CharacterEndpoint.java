@@ -10,6 +10,10 @@ import com.n8.marveldroid.ServiceResponse;
 import retrofit.Callback;
 import rx.Observable;
 
+/**
+ * Provides methods to retrieve {@link Character}s from the various rest endpoints
+ * (Comic, Story, etc..).
+ */
 public class CharacterEndpoint extends BaseEndpoint {
 
     private CharacterService mCharacterService;
@@ -19,7 +23,7 @@ public class CharacterEndpoint extends BaseEndpoint {
     }
 
     /**
-     * Retreives a {@link Character} for the specified character id.
+     * Retrieves a {@link Character} for the specified character id.
      *
      * @param characterId Unique identifier of the character to retrieve.
      * @param callback    Notifies caller when request is complete
@@ -101,7 +105,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters
      * @param callback    Notifies caller when request is complete
      */
-    public void getWithComicId(int comicId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
+    public void getCharactersForComicId(int comicId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
         mCharacterService.getCharactersForComicId(
                 comicId,
                 String.valueOf(getTimestamp()),
@@ -126,7 +130,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @return An observable of the character service response.
      */
-    public Observable<ServiceResponse<Character>> getWithComicId(int comicId, CharacterQueryParams queryParams) {
+    public Observable<ServiceResponse<Character>> getCharactersForComicId(int comicId, CharacterQueryParams queryParams) {
         return mCharacterService.getCharactersForComicId(
                 comicId,
                 String.valueOf(getTimestamp()),
@@ -150,7 +154,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @param callback    Notifies caller when request is complete
      */
-    public void getWithEventId(int eventId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
+    public void getCharactersForEventId(int eventId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
         mCharacterService.getCharactersForEventId(
                 eventId,
                 String.valueOf(getTimestamp()),
@@ -175,7 +179,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @return An observable of the character service response.
      */
-    public Observable<ServiceResponse<Character>> getWithEventId(int eventId, CharacterQueryParams queryParams) {
+    public Observable<ServiceResponse<Character>> getCharactersForEventId(int eventId, CharacterQueryParams queryParams) {
         return mCharacterService.getCharactersForEventId(
                 eventId,
                 String.valueOf(getTimestamp()),
@@ -199,7 +203,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @param callback    Notifies caller when request is complete
      */
-    public void getWithSeries(int seriesId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
+    public void getCharactersForSeriesId(int seriesId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
         mCharacterService.getCharactersForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
@@ -224,7 +228,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @return An observable of the character service response.
      */
-    public Observable<ServiceResponse<Character>> getWithSeries(int seriesId, CharacterQueryParams queryParams) {
+    public Observable<ServiceResponse<Character>> getCharactersForSeriesId(int seriesId, CharacterQueryParams queryParams) {
         return mCharacterService.getCharactersForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
@@ -248,7 +252,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @param callback    Notifies caller when request is complete
      */
-    public void getWithStoryId(int storyId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
+    public void getCharactersForStoryId(int storyId, CharacterQueryParams queryParams, Callback<ServiceResponse<Character>> callback) {
         mCharacterService.getCharactersForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
@@ -273,7 +277,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @param queryParams Defines the query used to search for and return characters.
      * @return An observable of the character service response.
      */
-    public Observable<ServiceResponse<Character>> getWithStoryId(int storyId, CharacterQueryParams queryParams) {
+    public Observable<ServiceResponse<Character>> getCharactersForStoryId(int storyId, CharacterQueryParams queryParams) {
         return mCharacterService.getCharactersForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
