@@ -5,7 +5,7 @@ Android library to work with the [Marvel Comics Api](http://developer.marvel.com
 This project is currently under development.
 
 - [x] Character endpoint
-- [ ] Comic
+- [x] Comic
 - [ ] Creator
 - [ ] Event
 - [ ] Series
