@@ -1,13 +1,13 @@
-package com.n8.marveldroid.EntityModelObjects;
+package com.n8.marveldroid.EntityModelObjects.List;
 
 import java.util.List;
 
-public class ItemList {
+public class ResourceList<T> {
     public int available;
 
     public int returned;
 
     public String collectionURI;
 
-    public List<Item> items;
+    public List<T> items;
 }
