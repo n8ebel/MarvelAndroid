@@ -1,5 +1,11 @@
 package com.n8.marveldroid.EntityModelObjects;
 
+import com.n8.marveldroid.EntityModelObjects.List.ResourceList;
+import com.n8.marveldroid.EntityModelObjects.Summary.ComicSummary;
+import com.n8.marveldroid.EntityModelObjects.Summary.EventSummary;
+import com.n8.marveldroid.EntityModelObjects.Summary.SeriesSummary;
+import com.n8.marveldroid.EntityModelObjects.Summary.StorySummary;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,12 +29,12 @@ public class Creator extends Entity{
 
     public ImageInfo thumbnail;
 
-    public ItemList series;
+    public ResourceList<SeriesSummary> series;
 
-    public ItemList stories;
+    public ResourceList<StorySummary> stories;
 
-    public ItemList comics;
+    public ResourceList<ComicSummary> comics;
 
-    public ItemList events;
+    public ResourceList<EventSummary> events;
 
 }
