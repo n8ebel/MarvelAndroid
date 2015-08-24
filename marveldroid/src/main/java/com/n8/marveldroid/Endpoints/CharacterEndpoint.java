@@ -10,6 +10,10 @@ import com.n8.marveldroid.ServiceResponse;
 import retrofit.Callback;
 import rx.Observable;
 
+/**
+ * Provides methods to retrieve {@link Character}s from the various rest endpoints
+ * (Comic, Story, etc..).
+ */
 public class CharacterEndpoint extends BaseEndpoint {
 
     private CharacterService mCharacterService;
