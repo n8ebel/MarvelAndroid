@@ -10,6 +10,9 @@ import com.n8.marveldroid.ServiceResponse;
 import retrofit.Callback;
 import rx.Observable;
 
+/**
+ * Provides methods to retrieve series from the various rest endpoints (Character, Event, etc)
+ */
 public class SeriesEndpoint extends BaseEndpoint {
 
     private SeriesService mSeriesService;
