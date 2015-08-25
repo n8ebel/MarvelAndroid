@@ -8,7 +8,7 @@ This project is currently under development.
 - [x] Comic
 - [x] Creator
 - [x] Event
-- [ ] Series
+- [x] Series
 - [ ] Stories
 
 I plan to support two patterns of network calls:
