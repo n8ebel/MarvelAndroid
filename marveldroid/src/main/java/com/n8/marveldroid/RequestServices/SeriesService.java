@@ -17,11 +17,11 @@ public interface SeriesService {
 
     @GET("/v1/public/series/{seriesId}")
     void getSeriesForId(
-            @Path("seriesId") int seriesId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            Callback<ServiceResponse<Series>> callback);
+        @Path("seriesId") int seriesId,
+        @Query("ts") String timestamp,
+        @Query("apikey") String apikey,
+        @Query("hash") String hashSignature,
+        Callback<ServiceResponse<Series>> callback);
 
     @GET("/v1/public/series")
     void getSeries(
