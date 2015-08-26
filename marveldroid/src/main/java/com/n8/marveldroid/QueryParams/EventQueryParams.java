@@ -40,9 +40,6 @@ public class EventQueryParams extends BaseQueryParams {
 
     private OrderBy orderBy;
 
-    private int limit;
-    private int offset;
-
     public EventQueryParams() {
         super();
         this.orderBy = OrderBy.Default;
@@ -118,21 +115,5 @@ public class EventQueryParams extends BaseQueryParams {
 
     public void setOrderBy(OrderBy orderBy) {
         this.orderBy = orderBy;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = offset;
     }
 }
