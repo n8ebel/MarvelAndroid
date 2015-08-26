@@ -15,65 +15,325 @@ import rx.Observable;
  * {Events, Creators, etc}
  */
 public class StoryEndpoint extends BaseEndpoint {
-    private StoryService storyService;
+    private StoryService mStoryService;
 
     public StoryEndpoint(@NonNull StoryService storyService) {
-        this.storyService = storyService;
+        mStoryService = storyService;
     }
 
+    /**
+     * Retrieves a {@link Story} for the specified storyId
+     *
+     * @param storyId   Unique identifier of the story to retrieve
+     * @param callback  Notifies caller when request is complete
+     */
     public void getStoryForId(int storyId, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStoryForId(
+            storyId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            callback);
     }
 
+    /**
+     * Retrieves a {@link Story} for the specified storyId
+     *
+     * @param storyId Unique identifier of the story to retrieve
+     *
+     * @return  An observable of the story {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Story>> getStoryForId(int storyId) {
-        return null;
+        return mStoryService.getStoryForId(
+            storyId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature());
     }
 
+    /**
+     * Retrieves a list of {@link Story}
+     *
+     * @param queryParams   Defines the query used to search for and return stories
+     * @param callback  Notifies caller when request is complete
+     */
     public void getStories(@NonNull StoryQueryParams queryParams, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStories(
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset(),
+            callback);
     }
 
+    /**
+     * Retrieves a list of {@link Story}
+     *
+     * @param queryParams   Defines the query used to search for and return stories
+     *
+     * @return  An observable of story {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Story>> getStories(@NonNull StoryQueryParams queryParams) {
-        return null;
+        return mStoryService.getStories(
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified characterId
+     *
+     * @param characterId   Unique identifier of the character to retrieve stories for
+     * @param queryParams   Deinfes the query used to search for and return stories
+     * @param callback  Notifies caller when request is complete.
+     */
     public void getStoriesForCharacterId(int characterId, @NonNull StoryQueryParams queryParams, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStoriesForCharacterId(
+            characterId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset(),
+            callback);
     }
 
-    public Observable<ServiceResponse<Story>> getStoriesForCharacterId(int storyId, @NonNull StoryQueryParams queryParams) {
-        return null;
+    /**
+     * Retrieves a list of {@link Story} for the specified characterId
+     *
+     * @param characterId Unique identifier of the character to retrieve stories for
+     * @param queryParams   Defines the query used to search for and return stories
+     *
+     * @return  An observable of the story {@link ServiceResponse}
+     */
+    public Observable<ServiceResponse<Story>> getStoriesForCharacterId(int characterId, @NonNull StoryQueryParams queryParams) {
+        return mStoryService.getStoriesForCharacterId(
+            characterId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified creatorId
+     *
+     * @param creatorId   Unique identifier of the creator to retrieve stories for
+     * @param queryParams   Deinfes the query used to search for and return stories
+     * @param callback  Notifies caller when request is complete.
+     */
     public void getStoriesForCreatorId(int creatorId, @NonNull StoryQueryParams queryParams, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStoriesForCreatorId(
+            creatorId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset(),
+            callback);
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified creatorId
+     *
+     * @param creatorId Unique identifier of the creator to retrieve stories for
+     * @param queryParams   Defines the query used to search for and return stories
+     *
+     * @return  An observable of the story {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Story>> getStoriesForCreatorId(int creatorId, @NonNull StoryQueryParams queryParams) {
-        return null;
+        return mStoryService.getStoriesForCreatorId(
+            creatorId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified eventId
+     *
+     * @param eventId   Unique identifier of the event to retrieve stories for
+     * @param queryParams   Deinfes the query used to search for and return stories
+     * @param callback  Notifies caller when request is complete.
+     */
     public void getStoriesForEventId(int eventId, @NonNull StoryQueryParams queryParams, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStoriesForEventId(
+            eventId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset(),
+            callback);
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified eventId
+     *
+     * @param eventId Unique identifier of the event to retrieve stories for
+     * @param queryParams   Defines the query used to search for and return stories
+     *
+     * @return  An observable of the story {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Story>> getStoriesForEventId(int eventId, @NonNull StoryQueryParams queryParams) {
-        return null;
+        return mStoryService.getStoriesForEventId(
+            eventId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified seriesId
+     *
+     * @param seriesId   Unique identifier of the series to retrieve stories for
+     * @param queryParams   Deinfes the query used to search for and return stories
+     * @param callback  Notifies caller when request is complete.
+     */
     public void getStoriesForSeriesId(int seriesId, @NonNull StoryQueryParams queryParams, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStoriesForSeriesId(
+            seriesId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset(),
+            callback);
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified seriesId
+     *
+     * @param seriesId Unique identifier of the series to retrieve stories for
+     * @param queryParams   Defines the query used to search for and return stories
+     *
+     * @return  An observable of the story {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Story>> getStoriesForSeriesId(int seriesId, @NonNull StoryQueryParams queryParams) {
-        return null;
+        return mStoryService.getStoriesForSeriesId(
+            seriesId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getComics()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset());
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified comicId
+     *
+     * @param comicId   Unique identifier of the comic to retrieve stories for
+     * @param queryParams   Deinfes the query used to search for and return stories
+     * @param callback  Notifies caller when request is complete.
+     */
     public void getStoriesForComicId(int comicId, @NonNull StoryQueryParams queryParams, Callback<ServiceResponse<Story>> callback) {
-
+        mStoryService.getStoriesForComicId(
+            comicId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset(),
+            callback);
     }
 
+    /**
+     * Retrieves a list of {@link Story} for the specified comicId
+     *
+     * @param comicId Unique identifier of the comic to retrieve stories for
+     * @param queryParams   Defines the query used to search for and return stories
+     *
+     * @return  An observable of the story {@link ServiceResponse}
+     */
     public Observable<ServiceResponse<Story>> getStoriesForComicId(int comicId, @NonNull StoryQueryParams queryParams) {
-        return null;
+        return mStoryService.getStoriesForComicId(
+            comicId,
+            String.valueOf(getTimestamp()),
+            getApiKey(),
+            getHashSignature(),
+            queryParams.getModifiedSince(),
+            getJoinedList(queryParams.getSeries()),
+            getJoinedList(queryParams.getEvents()),
+            getJoinedList(queryParams.getCreators()),
+            getJoinedList(queryParams.getCharacters()),
+            queryParams.getOrderBy().getValue(),
+            queryParams.getLimit(),
+            queryParams.getOffset());
     }
 }
