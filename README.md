@@ -1,5 +1,6 @@
 ## MarvelDroid
 Android library to work with the [Marvel Comics Api](http://developer.marvel.com/).
+Make sure to check out the documentation provided by Marvel, especially the [Attribution Info](http://developer.marvel.com/).
 
 ### Recent Updates
 8/26/15 - Beta 1 will be released very soon.  This release will contain functional endpoints to retreive all entity types.  Method names and class structure might still change however.
