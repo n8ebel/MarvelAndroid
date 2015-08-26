@@ -121,8 +121,6 @@ public class ComicQueryParams extends BaseQueryParams {
     private List<Integer> collaborators;
 
     private OrderBy orderBy;
-    private int limit;
-    private int offset;
 
     public ComicQueryParams() {
         super();
@@ -330,25 +328,5 @@ public class ComicQueryParams extends BaseQueryParams {
 
     public void setOrderBy(OrderBy orderBy) {
         this.orderBy = orderBy;
-    }
-
-    @Override
-    public int getLimit() {
-        return limit;
-    }
-
-    @Override
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    @Override
-    public int getOffset() {
-        return offset;
-    }
-
-    @Override
-    public void setOffset(int offset) {
-        this.offset = offset;
     }
 }
