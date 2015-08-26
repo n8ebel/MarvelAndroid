@@ -1,6 +1,9 @@
 ## MarvelDroid
-
 Android library to work with the [Marvel Comics Api](http://developer.marvel.com/).
+
+### Recent Updates
+8/26/15 - Beta 1 will be released very soon.  This release will contain functional endpoints to retreive all entity types.  Method names and class structure might still change however.
+
 
 This project is currently under development.
 
@@ -9,12 +12,19 @@ This project is currently under development.
 - [x] Creator
 - [x] Event
 - [x] Series
-- [ ] Stories
+- [x] Stories
 
-I plan to support two patterns of network calls:
-
+Supports two patterns of network calls:
 - Asynchronous callback
 - RxJava observables
+
+Entities (Comics, Characters, etc..) are retrieved through an `Endpoint` class.  
+For example, `ComicEndpoint` provides methods for retrieving comics in various ways across each of the rest endpoints.  
+
+ex:
+- `comicEndpoint.getComicForId(comicId)`
+- `comicEndpoint.getComicsForCharacterId(characterId, comicQueryParams)`
+
  
 ## Example Usage
 
