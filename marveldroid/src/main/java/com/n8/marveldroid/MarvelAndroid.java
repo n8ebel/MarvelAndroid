@@ -12,7 +12,17 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.n8.marveldroid.Endpoints.CharacterEndpoint;
+import com.n8.marveldroid.Endpoints.ComicEndpoint;
+import com.n8.marveldroid.Endpoints.CreatorEndpoint;
+import com.n8.marveldroid.Endpoints.EventEndpoint;
+import com.n8.marveldroid.Endpoints.SeriesEndpoint;
+import com.n8.marveldroid.Endpoints.StoryEndpoint;
 import com.n8.marveldroid.RequestServices.CharacterService;
+import com.n8.marveldroid.RequestServices.ComicService;
+import com.n8.marveldroid.RequestServices.CreatorService;
+import com.n8.marveldroid.RequestServices.EventService;
+import com.n8.marveldroid.RequestServices.SeriesService;
+import com.n8.marveldroid.RequestServices.StoryService;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -47,6 +57,11 @@ public class MarvelAndroid {
     private RestAdapter mRestAdapter;
 
     private CharacterEndpoint mCharacterEndpoint;
+    private ComicEndpoint mComicEndpoint;
+    private CreatorEndpoint mCreatorEndpoint;
+    private EventEndpoint mEventEndpoint;
+    private SeriesEndpoint mSeriesEndpoint;
+    private StoryEndpoint mStoryEndpoint;
 
     public static MarvelAndroid getInstance() {
         return sInstance;
@@ -78,6 +93,41 @@ public class MarvelAndroid {
             mCharacterEndpoint = new CharacterEndpoint(mRestAdapter.create(CharacterService.class));
         }
         return mCharacterEndpoint;
+    }
+
+    public ComicEndpoint getmComicEndpoint() {
+        if (mComicEndpoint == null) {
+            mComicEndpoint = new ComicEndpoint(mRestAdapter.create(ComicService.class));
+        }
+        return mComicEndpoint;
+    }
+
+    public CreatorEndpoint getmCreatorEndpoint() {
+        if (mCreatorEndpoint == null) {
+            mCreatorEndpoint = new CreatorEndpoint(mRestAdapter.create(CreatorService.class));
+        }
+        return mCreatorEndpoint;
+    }
+
+    public EventEndpoint getmEventEndpoint() {
+        if (mEventEndpoint == null) {
+            mEventEndpoint = new EventEndpoint(mRestAdapter.create(EventService.class));
+        }
+        return mEventEndpoint;
+    }
+
+    public SeriesEndpoint getmSeriesEndpoint() {
+        if (mSeriesEndpoint == null) {
+            mSeriesEndpoint = new SeriesEndpoint(mRestAdapter.create(SeriesService.class));
+        }
+        return mSeriesEndpoint;
+    }
+
+    public StoryEndpoint getmStoryEndpoint() {
+        if (mStoryEndpoint == null) {
+            mStoryEndpoint = new StoryEndpoint(mRestAdapter.create(StoryService.class));
+        }
+        return mStoryEndpoint;
     }
 
     private MarvelAndroid() {
