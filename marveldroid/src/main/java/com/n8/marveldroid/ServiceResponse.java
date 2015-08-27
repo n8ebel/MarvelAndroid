@@ -7,13 +7,13 @@ public class ServiceResponse<E> {
 
     public String status;
 
-    public String etag;
-
     public String copyright;
 
     public String attributionText;
 
     public String attributionHTML;
+
+    public String etag;
 
     public ResultsContainer<E> data;
 }

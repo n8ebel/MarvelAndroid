@@ -91,7 +91,7 @@ public class ComicQueryParams extends BaseQueryParams {
     private Format format;
     private FormatType formatType;
 
-    private boolean noVariants;
+    private Boolean noVariants;
 
     private DateDescriptor dateDescriptor;
     private String dateRange;
@@ -99,17 +99,17 @@ public class ComicQueryParams extends BaseQueryParams {
     private String title;
     private String titleStartsWith;
 
-    private int startYear;
-    private int issueNumber;
+    private Integer startYear;
+    private Integer issueNumber;
     private String diamondCode;
-    private int digitalId;
+    private Integer digitalId;
 
     private String upc;
     private String isbn;
     private String ean;
     private String issn;
 
-    private boolean hasDigitalIssue;
+    private Boolean hasDigitalIssue;
     private Date modifiedSince;
 
     private List<Integer> creators;
@@ -146,11 +146,11 @@ public class ComicQueryParams extends BaseQueryParams {
         this.formatType = formatType;
     }
 
-    public boolean isNoVariants() {
+    public Boolean isNoVariants() {
         return noVariants;
     }
 
-    public void setNoVariants(boolean noVariants) {
+    public void setNoVariants(Boolean noVariants) {
         this.noVariants = noVariants;
     }
 
@@ -186,19 +186,19 @@ public class ComicQueryParams extends BaseQueryParams {
         this.titleStartsWith = titleStartsWith;
     }
 
-    public int getStartYear() {
+    public Integer getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(int startYear) {
+    public void setStartYear(Integer startYear) {
         this.startYear = startYear;
     }
 
-    public int getIssueNumber() {
+    public Integer getIssueNumber() {
         return issueNumber;
     }
 
-    public void setIssueNumber(int issueNumber) {
+    public void setIssueNumber(Integer issueNumber) {
         this.issueNumber = issueNumber;
     }
 
@@ -210,11 +210,11 @@ public class ComicQueryParams extends BaseQueryParams {
         this.diamondCode = diamondCode;
     }
 
-    public int getDigitalId() {
+    public Integer getDigitalId() {
         return digitalId;
     }
 
-    public void setDigitalId(int digitalId) {
+    public void setDigitalId(Integer digitalId) {
         this.digitalId = digitalId;
     }
 
@@ -250,11 +250,11 @@ public class ComicQueryParams extends BaseQueryParams {
         this.issn = issn;
     }
 
-    public boolean isHasDigitalIssue() {
+    public Boolean isHasDigitalIssue() {
         return hasDigitalIssue;
     }
 
-    public void setHasDigitalIssue(boolean hasDigitalIssue) {
+    public void setHasDigitalIssue(Boolean hasDigitalIssue) {
         this.hasDigitalIssue = hasDigitalIssue;
     }
 

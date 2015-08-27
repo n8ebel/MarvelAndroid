@@ -29,9 +29,9 @@ public class Comic extends Entity {
     public String resourceURI;
     public List<Url> urls;
     public SeriesSummary series;
-    public ResourceList<ComicSummary> variants;
-    public ResourceList<ComicSummary> collection;
-    public ResourceList<ComicSummary> collectedIssues;
+    public List<ComicSummary> variants;
+    public List<ComicSummary> collection;
+    public List<ComicSummary> collectedIssues;
     public List<ComicDate> dates;
     public List<ComicPrice> prices;
     public ImageInfo thumbnail;

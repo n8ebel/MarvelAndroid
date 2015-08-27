@@ -66,7 +66,7 @@ public class CharacterQueryParams extends BaseQueryParams {
     }
 
     public List<Integer> getComics() {
-        return this.comics;
+        return comics;
     }
 
     public void setComics(List<Integer> comics) {
@@ -104,5 +104,4 @@ public class CharacterQueryParams extends BaseQueryParams {
     public void setOrderBy(OrderBy orderBy) {
         this.orderBy = orderBy;
     }
-
 }

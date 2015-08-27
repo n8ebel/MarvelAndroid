@@ -67,7 +67,7 @@ public class SeriesQueryParams extends BaseQueryParams {
     private String title;
     private String titleStartsWith;
 
-    private int startYear;
+    private Integer startYear;
     private Date modifiedSince;
 
     private List<Integer> comics;
@@ -103,11 +103,11 @@ public class SeriesQueryParams extends BaseQueryParams {
         this.titleStartsWith = titleStartsWith;
     }
 
-    public int getStartYear() {
+    public Integer getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(int startYear) {
+    public void setStartYear(Integer startYear) {
         this.startYear = startYear;
     }
 
