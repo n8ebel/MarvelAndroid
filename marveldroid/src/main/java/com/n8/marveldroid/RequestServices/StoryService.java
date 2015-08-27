@@ -15,7 +15,7 @@ public interface StoryService {
 
     // region Callbacks
 
-    @GET("v1/public/stories/{storyId}")
+    @GET("/v1/public/stories/{storyId}")
     void getStoryForId(
         @Path("storyId") int storyId,
         @Query("ts") String timestamp,
@@ -23,7 +23,7 @@ public interface StoryService {
         @Query("hash") String hashSignature,
         Callback<ServiceResponse<Story>> callback);
 
-    @GET("v1/public/stories")
+    @GET("/v1/public/stories")
     void getStories(
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
@@ -39,7 +39,7 @@ public interface StoryService {
         @Query("offset") int offset,
         Callback<ServiceResponse<Story>> callback);
 
-    @GET("v1/public/characters/{characterId}/stories")
+    @GET("/v1/public/characters/{characterId}/stories")
     void getStoriesForCharacterId(
         @Path("characterId") int characterId,
         @Query("ts") String timestamp,
@@ -71,7 +71,7 @@ public interface StoryService {
         @Query("offset") int offset,
         Callback<ServiceResponse<Story>> callback);
 
-    @GET("v1/public/creators/{creatorId}/stories")
+    @GET("/v1/public/creators/{creatorId}/stories")
     void getStoriesForCreatorId(
         @Path("creatorId") int creatorId,
         @Query("ts") String timestamp,
@@ -87,7 +87,7 @@ public interface StoryService {
         @Query("offset") int offset,
         Callback<ServiceResponse<Story>> callback);
 
-    @GET("v1/public/events/{eventId}/stories")
+    @GET("/v1/public/events/{eventId}/stories")
     void getStoriesForEventId(
         @Path("eventId") int eventId,
         @Query("ts") String timestamp,
@@ -103,7 +103,7 @@ public interface StoryService {
         @Query("offset") int offset,
         Callback<ServiceResponse<Story>> callback);
 
-    @GET("v1/public/series/{seriesId}/stories")
+    @GET("/v1/public/series/{seriesId}/stories")
     void getStoriesForSeriesId(
         @Path("seriesId") int seriesId,
         @Query("ts") String timestamp,
@@ -123,14 +123,14 @@ public interface StoryService {
 
     // region Observables
 
-    @GET("v1/public/stories/{storyId}")
+    @GET("/v1/public/stories/{storyId}")
     Observable<ServiceResponse<Story>> getStoryForId(
             @Path("storyId") int storyId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature);
 
-    @GET("v1/public/stories")
+    @GET("/v1/public/stories")
     Observable<ServiceResponse<Story>> getStories(
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -145,7 +145,7 @@ public interface StoryService {
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("v1/public/characters/{characterId}/stories")
+    @GET("/v1/public/characters/{characterId}/stories")
     Observable<ServiceResponse<Story>> getStoriesForCharacterId(
             @Path("characterId") int characterId,
             @Query("ts") String timestamp,
@@ -160,7 +160,7 @@ public interface StoryService {
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("v1/public/comics/{comicId}/stories")
+    @GET("/v1/public/comics/{comicId}/stories")
     Observable<ServiceResponse<Story>> getStoriesForComicId(
             @Path("comicId") int comicId,
             @Query("ts") String timestamp,
@@ -190,7 +190,7 @@ public interface StoryService {
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("v1/public/events/{eventId}/stories")
+    @GET("/v1/public/events/{eventId}/stories")
     Observable<ServiceResponse<Story>> getStoriesForEventId(
             @Path("eventId") int eventId,
             @Query("ts") String timestamp,
@@ -205,7 +205,7 @@ public interface StoryService {
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("v1/public/series/{seriesId}/stories")
+    @GET("/v1/public/series/{seriesId}/stories")
     Observable<ServiceResponse<Story>> getStoriesForSeriesId(
             @Path("seriesId") int seriesId,
             @Query("ts") String timestamp,

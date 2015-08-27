@@ -48,6 +48,11 @@ public class CreatorQueryParams extends BaseQueryParams {
 
     private OrderBy orderBy;
 
+    public CreatorQueryParams() {
+        super();
+        this.orderBy = OrderBy.Default;
+    }
+
     public String getFirstName() {
         return firstName;
     }

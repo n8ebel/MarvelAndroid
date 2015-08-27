@@ -77,6 +77,14 @@ public class EventQueryParams extends BaseQueryParams {
         this.creators = creators;
     }
 
+    public List<Integer> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Integer> characters) {
+        this.characters = characters;
+    }
+
     public List<Integer> getSeries() {
         return series;
     }
@@ -99,14 +107,6 @@ public class EventQueryParams extends BaseQueryParams {
 
     public void setStories(List<Integer> stories) {
         this.stories = stories;
-    }
-
-    public List<Integer> getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(List<Integer> characters) {
-        this.characters = characters;
     }
 
     public OrderBy getOrderBy() {
