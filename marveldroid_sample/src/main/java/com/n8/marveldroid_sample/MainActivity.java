@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         mResultTextView = (TextView) findViewById(R.id.main_activity_result_textView);
 
+        /*
+         * You will need a public and private key from http://developer.marvel.com/
+         */
         MarvelAndroid.initialize(
                 this,
                 new String(Base64.decode(getString(R.string.private_key), Base64.DEFAULT)),
