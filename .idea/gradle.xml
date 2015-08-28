@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/marveldroid" />
+            <option value="$PROJECT_DIR$/marveldroid_sample" />
           </set>
         </option>
       </GradleProjectSettings>

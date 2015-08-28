@@ -1,1 +1,1 @@
-include ':marveldroid'
+include ':marveldroid', ':marveldroid_sample'
