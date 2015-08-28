@@ -5,3 +5,4 @@
 .DS_Store
 /build
 /captures
+/marveldroid_sample/src/main/res/values/api-keys.xml
