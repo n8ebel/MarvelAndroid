@@ -1,23 +1,17 @@
 package com.n8.marveldroid_sample;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.n8.marveldroid.Endpoints.CharacterEndpoint;
 import com.n8.marveldroid.MarvelAndroid;
-import com.n8.marveldroid.QueryParams.CharacterQueryParams;
-import com.n8.marveldroid.ServiceResponse;
-import com.n8.marveldroid.EntityModelObjects.Character;
-
-import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mResultTextView = (TextView) findViewById(R.id.main_activity_result_textView);
-
         /*
          * You will need a public and private key from http://developer.marvel.com/
          */
@@ -40,37 +32,47 @@ public class MainActivity extends AppCompatActivity {
                 new String(Base64.decode(getString(R.string.public_key), Base64.DEFAULT)),
                 5 * 1024 * 1024);
 
-        CharacterQueryParams queryParams = new CharacterQueryParams();
-        queryParams.setNameStartsWith("spider");
+        ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewPager);
+        PagerAdapter adapter = new MarvelousPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
 
-        MarvelAndroid marvelAndroid = MarvelAndroid.getInstance();
-        CharacterEndpoint characterEndpoint = marvelAndroid.getCharacterEndpoint();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_activity_tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
+    }
 
-    /*
-     * Standard way
-     */
-        msg = "";
+    private class MarvelousPagerAdapter extends FragmentStatePagerAdapter {
 
-        characterEndpoint.getCharacters(queryParams, new Callback<ServiceResponse<Character>>() {
-            @Override
-            public void success(ServiceResponse<Character> characterServiceResponse, Response response) {
-                List<Character> characters = characterServiceResponse.data.results;
+        public MarvelousPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-                msg += "*************************************\n";
-                msg += "Characters\n";
-                for (Character character : characters) {
-                    msg += character.name + "\n";
-                }
-                msg += "*************************************\n";
-
-                mResultTextView.setText(msg);
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Characters";
+                case 1:
+                    return "Comic";
+                default:
+                    return null;
             }
+        }
 
-            @Override
-            public void failure(RetrofitError error) {
-                msg += error.getLocalizedMessage() + "\n";
-                mResultTextView.setText(msg);
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new CharacterFragment();
+                case 1:
+                    return new ComicFragment();
+                default:
+                    return null;
             }
-        });
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
     }
 }
