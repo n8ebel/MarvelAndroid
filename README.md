@@ -3,6 +3,8 @@ Android library to work with the [Marvel Comics Api](http://developer.marvel.com
 Make sure to check out the documentation provided by Marvel, especially the [Attribution Info](http://developer.marvel.com/).
 
 ### Recent Updates
+9/1/15 - [Beta 1](https://github.com/n8ebel/Marvel_Android/releases/tag/v0.9) is ready to go!!  Please try it out, create issues for anything you find that isn't working correctly.  I will continue building out samples and have a couple additional enhancements on the way.
+
 8/28/15 - Offical Beta 1 will be out by the end of the month.  These is now a very basic sample project included in the repo to help get you started playing with the apis.
 
 8/26/15 - Beta 1 will be released very soon.  This release will contain functional endpoints to retreive all entity types.  Method names and class structure might still change however.
