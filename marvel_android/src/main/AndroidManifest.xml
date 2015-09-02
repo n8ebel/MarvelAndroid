@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.n8.marveldroid">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        >
+
+    </application>
+
+</manifest>

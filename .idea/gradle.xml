@@ -9,8 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/marveldroid" />
-            <option value="$PROJECT_DIR$/marveldroid_sample" />
+            <option value="$PROJECT_DIR$/marvel_android" />
+            <option value="$PROJECT_DIR$/marvel_android_sample" />
           </set>
         </option>
       </GradleProjectSettings>

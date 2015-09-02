@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MarvelDroid.iml" filepath="$PROJECT_DIR$/MarvelDroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/marveldroid/marveldroid.iml" filepath="$PROJECT_DIR$/marveldroid/marveldroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/marveldroid_sample/marveldroid_sample.iml" filepath="$PROJECT_DIR$/marveldroid_sample/marveldroid_sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Marvel_Android.iml" filepath="$PROJECT_DIR$/Marvel_Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/marvel_android/marvel_android.iml" filepath="$PROJECT_DIR$/marvel_android/marvel_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/marvel_android_sample/marvel_android_sample.iml" filepath="$PROJECT_DIR$/marvel_android_sample/marvel_android_sample.iml" />
     </modules>
   </component>
 </project>
