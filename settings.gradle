@@ -1,1 +1,1 @@
-include ':marveldroid', ':marveldroid_sample'
+include ':marvel_android', ':marvel_android_sample'
