@@ -1,10 +1,18 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.n8.marveldroid_sample.ComicFragment"
     >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data provided by Marvel. © 2014 Marvel"
+        android:layout_marginBottom="8dp"
+        />
 
     <TextView
         android:id="@+id/comic_fragment_comics_textView"
@@ -12,4 +20,4 @@
         android:layout_height="match_parent"
         />
 
-</FrameLayout>
+</LinearLayout>

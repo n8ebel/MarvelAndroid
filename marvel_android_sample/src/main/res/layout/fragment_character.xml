@@ -1,4 +1,4 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +7,16 @@
     >
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data provided by Marvel. © 2014 Marvel"
+        android:layout_marginBottom="8dp"
+        />
+
+    <TextView
         android:id="@+id/character_fragment_character_textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 
-</FrameLayout>
+</LinearLayout>
