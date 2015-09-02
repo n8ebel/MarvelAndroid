@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
          */
         MarvelAndroid.initialize(
                 this,
-                new String(Base64.decode(getString(R.string.private_key), Base64.DEFAULT)),
-                new String(Base64.decode(getString(R.string.public_key), Base64.DEFAULT)),
+                "your private key",
+                "your public key",
                 5 * 1024 * 1024);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewPager);
