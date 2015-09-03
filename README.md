@@ -1,4 +1,4 @@
-## MarvelDroid
+## MarvelAndroid
 Android library to work with the [Marvel Comics Api](http://developer.marvel.com/).
 Make sure to check out the documentation provided by Marvel, especially the [Attribution Info](http://developer.marvel.com/).
 
