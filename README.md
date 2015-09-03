@@ -37,8 +37,9 @@ There is a sample project included with the repo.  Clone or download the repo to
 
 To run the sample, **you will need your own api keys from Marvel**.  You can get keys by going [here](http://developer.marvel.com/), registering an account, and then copying those into your project.
  
-## Example Usage
+## Example Usages
 
+### Characters
 ```
 MarvelAndroid.initialize(context, "YOUR_PRIVATE_KEY", "YOUR_PUBLIC_KEY", cache_size);
 CharacterEndpoint characterEndpoint = MarvelAndroid.getInstance().getCharacterEndpoint();
@@ -61,6 +62,52 @@ characterEndpoint.getCharacters(queryParams, new Callback<ServiceResponse<Charac
         
 // RxJava Observable
 Observable<ServiceResponse<Character>> observable = characterEndpoint.getCharacters(queryParams);
+```
+
+### Comics
+```
+ComicQueryParams queryParams = new ComicQueryParams();
+ queryParams.setOrderBy(ComicQueryParams.OrderBy.Title);
+
+ MarvelAndroid marvelAndroid = MarvelAndroid.getInstance();
+ ComicEndpoint comicEndpoint = marvelAndroid.getComicEndpoint();
+
+ /*
+  * Standard way
+  */
+
+// Retrieve list of comics through async callback
+//
+comicEndpoint.getComics(queryParams, new Callback<RequestResponse<Comic>>() {
+    @Override
+    public void success(RequestResponse<Comic> requestResponse, Response response) {
+        List<Comic> comics = requestResponse.data.results;
+
+        for (Comic comic : comics) {
+            Log.d("foo", comic.title + " " + comic.description);
+        }
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+        mMsg += error.getLocalizedMessage() + "\n";
+        textView.setText(mMsg);
+    }
+});
+
+// Same results, but returned through RxJava Observable subscription
+//
+Observable<RequestResponse<Comic>> comics = comicEndpoint.getComics(queryParams);
+comics.subscribe(new Action1<RequestResponse<Comic>>() {
+    @Override
+    public void call(RequestResponse<Comic> comicRequestResponse) {
+        List<Comic> comics = requestResponse.data.results;
+
+        for (Comic comic : comics) {
+            Log.d("foo", comic.title + " " + comic.description);
+        }
+    }
+});
 ```
 
 ## License
