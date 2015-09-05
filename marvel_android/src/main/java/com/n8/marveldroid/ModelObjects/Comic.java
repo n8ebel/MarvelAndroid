@@ -38,7 +38,7 @@ public class Comic extends Entity {
     public SeriesSummary series;
 
     public List<ComicSummary> variants;
-    public List<ComicSummary> collection;
+    public List<ComicSummary> collections;
     public List<ComicSummary> collectedIssues;
 
     public List<ComicDate> dates;

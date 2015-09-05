@@ -563,12 +563,12 @@ public class ComicEndpointTest {
     }
 
     private String getJoinedList(List<?> list) {
-        return BaseEndpoint.getJoinedList(list);
+        return BaseEndpoint.getCommaSeparatedList(list);
     }
 
     private class MockComicEndpoint extends ComicEndpoint {
         public MockComicEndpoint(@NonNull ComicService comicService) {
-            super(comicService);
+            super(comicService, PUBLIC_KEY, PRIVATE_KEY);
         }
 
         @Override

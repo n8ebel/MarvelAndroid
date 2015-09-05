@@ -12,9 +12,9 @@ import java.util.List;
 public class ResourceList<T extends Summary> {
     public int available;
 
-    public int returned;
-
     public String collectionURI;
 
     public List<T> items;
+
+    public int returned;
 }

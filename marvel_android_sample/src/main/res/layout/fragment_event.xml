@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.n8.marveldroid_sample.CharacterFragment"
+    tools:context="com.n8.marveldroid_sample.EventFragment"
     >
 
     <TextView
@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/character_fragment_character_textView"
+        android:id="@+id/event_fragment_events_textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
