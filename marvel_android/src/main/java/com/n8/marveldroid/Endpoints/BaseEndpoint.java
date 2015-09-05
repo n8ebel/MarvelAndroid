@@ -1,25 +1,29 @@
 package com.n8.marveldroid.Endpoints;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.common.base.Joiner;
+import com.n8.marveldroid.MarvelAndroid;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class BaseEndpoint {
-    protected String mPublicKey;
+    private static final String TAG = BaseEndpoint.class.getSimpleName();
 
-    protected String mPrivateKey;
+    private String mPublicKey;
 
-    public static String getJoinedList(List<?> list) {
-        if (list == null) {
+    private String mPrivateKey;
+
+    public static String getCommaSeparatedList(List<?> items) {
+        if (items == null) {
             return null;
         }
 
         Joiner joiner = Joiner.on(',');
-        return joiner.join(list);
+        return joiner.join(items);
     }
 
     public BaseEndpoint(@NonNull String publicKey, @NonNull String privateKey) {
@@ -33,28 +37,27 @@ public class BaseEndpoint {
         mPrivateKey = privateKey;
     }
 
-    final protected long getTimestamp(){
+    protected long getTimestamp(){
         return System.currentTimeMillis() / 1000L;
     }
 
-    final protected String getApiKey(){
+    protected String getApiKey(){
         return mPublicKey;
     }
 
-    final protected String getHashSignature(){
+    protected String getHashSignature(){
         return createMD5Hash(String.valueOf(getTimestamp()) + mPrivateKey + mPublicKey);
     }
 
-    private static String createMD5Hash(@NonNull final String s) {
+    private static String createMD5Hash(@NonNull final String string) {
         try {
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
-            digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
+            digest.update(string.getBytes());
+            byte messageDigestArray[] = digest.digest();
 
-            // Create Hex String
             StringBuilder sb = new StringBuilder();
-            for (byte aMessageDigest : messageDigest) {
-                String h = Integer.toHexString(0xFF & aMessageDigest);
+            for (byte messageDigest : messageDigestArray) {
+                String h = Integer.toHexString(0xFF & messageDigest);
                 while (h.length() < 2) {
                     h = "0" + h;
                 }
@@ -62,7 +65,9 @@ public class BaseEndpoint {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            if (MarvelAndroid.LOGGING_ENABLED) {
+                Log.d(TAG, e.getLocalizedMessage());
+            }
         }
 
         return "";

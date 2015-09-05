@@ -288,12 +288,12 @@ public class CharacterEndpointTest {
     }
 
     private String getJoinedList(List<?> list) {
-        return BaseEndpoint.getJoinedList(list);
+        return BaseEndpoint.getCommaSeparatedList(list);
     }
 
     private class MockCharacterEndpoint extends CharacterEndpoint {
         public MockCharacterEndpoint(@NonNull CharacterService characterService) {
-            super(characterService);
+            super(characterService, PUBLIC_KEY, PRIVATE_KEY);
         }
 
         @Override

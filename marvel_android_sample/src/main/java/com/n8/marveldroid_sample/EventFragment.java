@@ -57,7 +57,7 @@ public class EventFragment extends Fragment {
                 List<Event> events = requestResponse.data.results;
 
                 mMsg += "*************************************\n";
-                mMsg += "Comics\n";
+                mMsg += "Events\n";
                 for (Event event : events) {
                     mMsg += event.title + "\n";
                 }

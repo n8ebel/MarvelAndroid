@@ -3,11 +3,8 @@ package com.n8.marveldroid;
 import android.support.annotation.NonNull;
 
 import com.n8.marveldroid.Endpoints.BaseEndpoint;
-import com.n8.marveldroid.Endpoints.EventEndpoint;
 import com.n8.marveldroid.Endpoints.SeriesEndpoint;
-import com.n8.marveldroid.QueryParams.EventQueryParams;
 import com.n8.marveldroid.QueryParams.SeriesQueryParams;
-import com.n8.marveldroid.RequestServices.EventService;
 import com.n8.marveldroid.RequestServices.SeriesService;
 
 import org.junit.Before;
@@ -357,12 +354,12 @@ public class SeriesEndpointTest {
     }
 
     private String getJoinedList(List<?> list) {
-        return BaseEndpoint.getJoinedList(list);
+        return BaseEndpoint.getCommaSeparatedList(list);
     }
 
     private class MockSeriesEndpoint extends SeriesEndpoint {
         public MockSeriesEndpoint(@NonNull SeriesService seriesService) {
-            super(seriesService);
+            super(seriesService, PUBLIC_KEY, PRIVATE_KEY);
         }
 
         @Override

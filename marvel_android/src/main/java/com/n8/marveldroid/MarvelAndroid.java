@@ -7,19 +7,19 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.n8.marveldroid.Adapters.DateAdapter;
+import com.n8.marveldroid.Deserializers.DateDeserializer;
 import com.n8.marveldroid.Endpoints.CharacterEndpoint;
 import com.n8.marveldroid.Endpoints.ComicEndpoint;
 import com.n8.marveldroid.Endpoints.CreatorEndpoint;
 import com.n8.marveldroid.Endpoints.EventEndpoint;
 import com.n8.marveldroid.Endpoints.SeriesEndpoint;
 import com.n8.marveldroid.Endpoints.StoryEndpoint;
-import com.n8.marveldroid.Adapters.CharacterSummaryAdapter;
-import com.n8.marveldroid.Adapters.ComicSummaryAdapter;
-import com.n8.marveldroid.Adapters.CreatorSummaryAdapter;
-import com.n8.marveldroid.Adapters.EventSummaryAdapter;
-import com.n8.marveldroid.Adapters.SeriesSummaryAdapter;
-import com.n8.marveldroid.Adapters.StorySummaryAdapter;
+import com.n8.marveldroid.Deserializers.CharacterSummaryDeserializer;
+import com.n8.marveldroid.Deserializers.ComicSummaryDeserializer;
+import com.n8.marveldroid.Deserializers.CreatorSummaryAdapter;
+import com.n8.marveldroid.Deserializers.EventSummaryDeserializer;
+import com.n8.marveldroid.Deserializers.SeriesSummaryDeserializer;
+import com.n8.marveldroid.Deserializers.StorySummaryDeserializer;
 import com.n8.marveldroid.ModelObjects.Summary.CharacterSummary;
 import com.n8.marveldroid.ModelObjects.Summary.ComicSummary;
 import com.n8.marveldroid.ModelObjects.Summary.CreatorSummary;
@@ -150,13 +150,13 @@ public class MarvelAndroid {
         okHttpClient.setCache(cache);
 
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Date.class, new DateAdapter())
-                .registerTypeAdapter(CharacterSummary.class, new CharacterSummaryAdapter())
-                .registerTypeAdapter(ComicSummary.class, new ComicSummaryAdapter())
+                .registerTypeAdapter(Date.class, new DateDeserializer())
+                .registerTypeAdapter(CharacterSummary.class, new CharacterSummaryDeserializer())
+                .registerTypeAdapter(ComicSummary.class, new ComicSummaryDeserializer())
                 .registerTypeAdapter(CreatorSummary.class, new CreatorSummaryAdapter())
-                .registerTypeAdapter(EventSummary.class, new EventSummaryAdapter())
-                .registerTypeAdapter(SeriesSummary.class, new SeriesSummaryAdapter())
-                .registerTypeAdapter(StorySummary.class, new StorySummaryAdapter())
+                .registerTypeAdapter(EventSummary.class, new EventSummaryDeserializer())
+                .registerTypeAdapter(SeriesSummary.class, new SeriesSummaryDeserializer())
+                .registerTypeAdapter(StorySummary.class, new StorySummaryDeserializer())
                 .create();
 
         mRestAdapter = new RestAdapter.Builder()

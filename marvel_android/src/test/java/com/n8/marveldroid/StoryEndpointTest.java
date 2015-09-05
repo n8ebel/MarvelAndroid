@@ -336,12 +336,12 @@ public class StoryEndpointTest {
     }
 
     private String getJoinedList(List<?> list) {
-        return BaseEndpoint.getJoinedList(list);
+        return BaseEndpoint.getCommaSeparatedList(list);
     }
 
     private class MockStoryEndpoint extends StoryEndpoint {
         public MockStoryEndpoint(@NonNull StoryService storyService) {
-            super(storyService);
+            super(storyService, PUBLIC_KEY, PRIVATE_KEY);
         }
 
         @Override

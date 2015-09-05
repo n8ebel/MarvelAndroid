@@ -3,11 +3,8 @@ package com.n8.marveldroid;
 import android.support.annotation.NonNull;
 
 import com.n8.marveldroid.Endpoints.BaseEndpoint;
-import com.n8.marveldroid.Endpoints.CreatorEndpoint;
 import com.n8.marveldroid.Endpoints.EventEndpoint;
-import com.n8.marveldroid.QueryParams.CreatorQueryParams;
 import com.n8.marveldroid.QueryParams.EventQueryParams;
-import com.n8.marveldroid.RequestServices.CreatorService;
 import com.n8.marveldroid.RequestServices.EventService;
 
 import org.junit.Before;
@@ -359,12 +356,12 @@ public class EventEndpointTest {
     }
 
     private String getJoinedList(List<?> list) {
-        return BaseEndpoint.getJoinedList(list);
+        return BaseEndpoint.getCommaSeparatedList(list);
     }
 
     private class MockEventEndpoint extends EventEndpoint {
         public MockEventEndpoint(@NonNull EventService creatorService) {
-            super(creatorService);
+            super(creatorService, PUBLIC_KEY, PRIVATE_KEY);
         }
 
         @Override

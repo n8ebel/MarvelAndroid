@@ -3,11 +3,8 @@ package com.n8.marveldroid;
 import android.support.annotation.NonNull;
 
 import com.n8.marveldroid.Endpoints.BaseEndpoint;
-import com.n8.marveldroid.Endpoints.ComicEndpoint;
 import com.n8.marveldroid.Endpoints.CreatorEndpoint;
-import com.n8.marveldroid.QueryParams.ComicQueryParams;
 import com.n8.marveldroid.QueryParams.CreatorQueryParams;
-import com.n8.marveldroid.RequestServices.ComicService;
 import com.n8.marveldroid.RequestServices.CreatorService;
 
 import org.junit.Before;
@@ -371,12 +368,12 @@ public class CreatorEndpointTest {
     }
 
     private String getJoinedList(List<?> list) {
-        return BaseEndpoint.getJoinedList(list);
+        return BaseEndpoint.getCommaSeparatedList(list);
     }
 
     private class MockCreatorEndpoint extends CreatorEndpoint {
         public MockCreatorEndpoint(@NonNull CreatorService creatorService) {
-            super(creatorService);
+            super(creatorService, PUBLIC_KEY, PRIVATE_KEY);
         }
 
         @Override
