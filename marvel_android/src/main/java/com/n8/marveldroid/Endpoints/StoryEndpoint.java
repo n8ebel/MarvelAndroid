@@ -17,7 +17,8 @@ import rx.Observable;
 public class StoryEndpoint extends BaseEndpoint {
     private StoryService mStoryService;
 
-    public StoryEndpoint(@NonNull StoryService storyService) {
+    public StoryEndpoint(@NonNull StoryService storyService, @NonNull String publicKey, @NonNull String privateKey) {
+        super(publicKey, privateKey);
         mStoryService = storyService;
     }
 

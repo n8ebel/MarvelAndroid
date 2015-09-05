@@ -18,7 +18,8 @@ public class CharacterEndpoint extends BaseEndpoint {
 
     private CharacterService mCharacterService;
 
-    public CharacterEndpoint(@NonNull CharacterService characterService) {
+    public CharacterEndpoint(@NonNull CharacterService characterService, @NonNull String publicKey, @NonNull String privateKey) {
+        super(publicKey, privateKey);
         mCharacterService = characterService;
     }
 

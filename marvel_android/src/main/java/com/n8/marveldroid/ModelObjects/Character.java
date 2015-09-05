@@ -18,17 +18,17 @@ public class Character extends Entity {
 
     public Date modified;
 
-    public String resourceURI;
-
-    public List<Url> urls;
-
     public ImageInfo thumbnail;
 
+    public String resourceURI;
+
     public ResourceList<ComicSummary> comics;
+
+    public ResourceList<SeriesSummary> series;
 
     public ResourceList<StorySummary> stories;
 
     public ResourceList<EventSummary> events;
 
-    public ResourceList<SeriesSummary> series;
+    public List<Url> urls;
 }

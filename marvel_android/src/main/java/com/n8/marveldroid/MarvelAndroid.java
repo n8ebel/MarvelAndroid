@@ -7,16 +7,25 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
+import com.n8.marveldroid.Adapters.DateAdapter;
 import com.n8.marveldroid.Endpoints.CharacterEndpoint;
 import com.n8.marveldroid.Endpoints.ComicEndpoint;
 import com.n8.marveldroid.Endpoints.CreatorEndpoint;
 import com.n8.marveldroid.Endpoints.EventEndpoint;
 import com.n8.marveldroid.Endpoints.SeriesEndpoint;
 import com.n8.marveldroid.Endpoints.StoryEndpoint;
+import com.n8.marveldroid.Adapters.CharacterSummaryAdapter;
+import com.n8.marveldroid.Adapters.ComicSummaryAdapter;
+import com.n8.marveldroid.Adapters.CreatorSummaryAdapter;
+import com.n8.marveldroid.Adapters.EventSummaryAdapter;
+import com.n8.marveldroid.Adapters.SeriesSummaryAdapter;
+import com.n8.marveldroid.Adapters.StorySummaryAdapter;
+import com.n8.marveldroid.ModelObjects.Summary.CharacterSummary;
+import com.n8.marveldroid.ModelObjects.Summary.ComicSummary;
+import com.n8.marveldroid.ModelObjects.Summary.CreatorSummary;
+import com.n8.marveldroid.ModelObjects.Summary.EventSummary;
+import com.n8.marveldroid.ModelObjects.Summary.SeriesSummary;
+import com.n8.marveldroid.ModelObjects.Summary.StorySummary;
 import com.n8.marveldroid.RequestServices.CharacterService;
 import com.n8.marveldroid.RequestServices.ComicService;
 import com.n8.marveldroid.RequestServices.CreatorService;
@@ -27,12 +36,7 @@ import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Locale;
 
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -43,6 +47,8 @@ public class MarvelAndroid {
     public static final String PORT = "80";
     public static final String API_DOMAIN = "http://gateway.marvel.com";
     public static final String API_URL = API_DOMAIN + ":" + PORT;
+
+    public static boolean LOGGING_ENABLED = false;
 
     private static final String TAG = MarvelAndroid.class.getSimpleName();
 
@@ -90,50 +96,47 @@ public class MarvelAndroid {
 
     public CharacterEndpoint getCharacterEndpoint() {
         if (mCharacterEndpoint == null) {
-            mCharacterEndpoint = new CharacterEndpoint(mRestAdapter.create(CharacterService.class));
+            mCharacterEndpoint = new CharacterEndpoint(mRestAdapter.create(CharacterService.class), sPublicKey, sPrivateKey);
         }
         return mCharacterEndpoint;
     }
 
     public ComicEndpoint getComicEndpoint() {
         if (mComicEndpoint == null) {
-            mComicEndpoint = new ComicEndpoint(mRestAdapter.create(ComicService.class));
+            mComicEndpoint = new ComicEndpoint(mRestAdapter.create(ComicService.class), sPublicKey, sPrivateKey);
         }
         return mComicEndpoint;
     }
 
     public CreatorEndpoint getCreatorEndpoint() {
         if (mCreatorEndpoint == null) {
-            mCreatorEndpoint = new CreatorEndpoint(mRestAdapter.create(CreatorService.class));
+            mCreatorEndpoint = new CreatorEndpoint(mRestAdapter.create(CreatorService.class), sPublicKey, sPrivateKey);
         }
         return mCreatorEndpoint;
     }
 
     public EventEndpoint getEventEndpoint() {
         if (mEventEndpoint == null) {
-            mEventEndpoint = new EventEndpoint(mRestAdapter.create(EventService.class));
+            mEventEndpoint = new EventEndpoint(mRestAdapter.create(EventService.class), sPublicKey, sPrivateKey);
         }
         return mEventEndpoint;
     }
 
     public SeriesEndpoint getSeriesEndpoint() {
         if (mSeriesEndpoint == null) {
-            mSeriesEndpoint = new SeriesEndpoint(mRestAdapter.create(SeriesService.class));
+            mSeriesEndpoint = new SeriesEndpoint(mRestAdapter.create(SeriesService.class), sPublicKey, sPrivateKey);
         }
         return mSeriesEndpoint;
     }
 
     public StoryEndpoint getStoryEndpoint() {
         if (mStoryEndpoint == null) {
-            mStoryEndpoint = new StoryEndpoint(mRestAdapter.create(StoryService.class));
+            mStoryEndpoint = new StoryEndpoint(mRestAdapter.create(StoryService.class), sPublicKey, sPrivateKey);
         }
         return mStoryEndpoint;
     }
 
     private MarvelAndroid() {
-
-        // Initialize RequestSignature so it can be used to generate the request signatures.
-        Request.initialize(sPrivateKey, sPublicKey);
 
         OkHttpClient okHttpClient = new OkHttpClient();
         Cache cache = null;
@@ -148,6 +151,12 @@ public class MarvelAndroid {
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateAdapter())
+                .registerTypeAdapter(CharacterSummary.class, new CharacterSummaryAdapter())
+                .registerTypeAdapter(ComicSummary.class, new ComicSummaryAdapter())
+                .registerTypeAdapter(CreatorSummary.class, new CreatorSummaryAdapter())
+                .registerTypeAdapter(EventSummary.class, new EventSummaryAdapter())
+                .registerTypeAdapter(SeriesSummary.class, new SeriesSummaryAdapter())
+                .registerTypeAdapter(StorySummary.class, new StorySummaryAdapter())
                 .create();
 
         mRestAdapter = new RestAdapter.Builder()
@@ -160,27 +169,5 @@ public class MarvelAndroid {
 
     public RestAdapter getRestAdapter() {
         return mRestAdapter;
-    }
-
-    private class DateAdapter implements JsonDeserializer<Date> {
-
-        private final String[] DATE_FORMATS = new String[]{
-                "yyyy-MM-dd'T'HH:mm:ssZ",
-                "yyyy-MM-dd HH:mm:ss"
-        };
-
-        @Override
-        public Date deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws
-                JsonParseException {
-            for (String format : DATE_FORMATS) {
-                try {
-                    return new SimpleDateFormat(format, Locale.US).parse(jsonElement.getAsString());
-                } catch (ParseException e) {
-                    Log.d(TAG, "ParseException for format: " + format);
-                }
-            }
-            throw new JsonParseException("Failed to parse date: \"" + jsonElement.getAsString()
-                    + "\". Supported formats: " + Arrays.toString(DATE_FORMATS));
-        }
     }
 }

@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
          */
         MarvelAndroid.initialize(
                 this,
-                "your private key",
-                "your public key",
+                getString(R.string.private_key),
+                getString(R.string.public_key),
                 5 * 1024 * 1024);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewPager);
@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                     return "Characters";
                 case 1:
                     return "Comic";
+                case 2:
+                    return "Events";
                 default:
                     return null;
             }
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     return new CharacterFragment();
                 case 1:
                     return new ComicFragment();
+                case 2:
+                    return new EventFragment();
                 default:
                     return null;
             }
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
     }
 }

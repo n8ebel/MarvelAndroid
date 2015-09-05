@@ -16,7 +16,8 @@ import rx.Observable;
 public class CreatorEndpoint extends BaseEndpoint {
     private CreatorService mCreatorService;
 
-    public CreatorEndpoint(@NonNull CreatorService creatorService) {
+    public CreatorEndpoint(@NonNull CreatorService creatorService, @NonNull String publicKey, @NonNull String privateKey) {
+        super(publicKey, privateKey);
         mCreatorService = creatorService;
     }
 

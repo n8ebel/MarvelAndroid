@@ -16,7 +16,8 @@ import rx.Observable;
 public class EventEndpoint extends BaseEndpoint {
     private EventService mEventService;
 
-    public EventEndpoint(@NonNull EventService eventService) {
+    public EventEndpoint(@NonNull EventService eventService, @NonNull String publicKey, @NonNull String privateKey) {
+        super(publicKey, privateKey);
         mEventService = eventService;
     }
 

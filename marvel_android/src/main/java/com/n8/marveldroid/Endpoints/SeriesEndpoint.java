@@ -17,7 +17,8 @@ public class SeriesEndpoint extends BaseEndpoint {
 
     private SeriesService mSeriesService;
 
-    public SeriesEndpoint(@NonNull SeriesService seriesService) {
+    public SeriesEndpoint(@NonNull SeriesService seriesService, @NonNull String publicKey, @NonNull String privateKey) {
+        super(publicKey, privateKey);
         mSeriesService = seriesService;
     }
 

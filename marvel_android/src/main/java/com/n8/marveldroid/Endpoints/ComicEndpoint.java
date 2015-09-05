@@ -19,7 +19,8 @@ public class ComicEndpoint extends BaseEndpoint {
 
     private ComicService mComicService;
 
-    public ComicEndpoint(@NonNull ComicService comicService) {
+    public ComicEndpoint(@NonNull ComicService comicService, @NonNull String publicKey, @NonNull String privateKey) {
+        super(publicKey, privateKey);
         mComicService = comicService;
     }
 
