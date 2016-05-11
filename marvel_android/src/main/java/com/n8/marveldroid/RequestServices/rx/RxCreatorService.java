@@ -1,4 +1,4 @@
-package com.n8.marveldroid.RequestServices;
+package com.n8.marveldroid.RequestServices.rx;
 
 import com.n8.marveldroid.ModelObjects.Creator;
 import com.n8.marveldroid.RequestResponse;
@@ -8,11 +8,12 @@ import java.util.Date;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import rx.Observable;
 
-public interface CreatorService {
+public interface RxCreatorService {
 
     @GET("/v1/public/creators")
-    RequestResponse<Creator> getCreators(
+    Observable<RequestResponse<Creator>> getCreators(
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature,
@@ -34,14 +35,14 @@ public interface CreatorService {
             @Query("offset") int offset);
 
     @GET("/v1/public/creators/{creatorId}")
-    RequestResponse<Creator> getCreatorForId(
+    Observable<RequestResponse<Creator>> getCreatorForId(
             @Path("creatorId") int creatorId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature);
 
     @GET("/v1/public/comics/{comicId}/creators")
-    RequestResponse<Creator> getCreatorsForComicId(
+    Observable<RequestResponse<Creator>> getCreatorsForComicId(
             @Path("comicId") int comicId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -63,7 +64,7 @@ public interface CreatorService {
             @Query("offset") int offset);
 
     @GET("/v1/public/events/{eventId}/creators")
-    RequestResponse<Creator> getCreatorsForEventId(
+    Observable<RequestResponse<Creator>> getCreatorsForEventId(
             @Path("eventId") int eventId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -85,7 +86,7 @@ public interface CreatorService {
             @Query("offset") int offset);
 
     @GET("/v1/public/series/{seriesId}/creators")
-    RequestResponse<Creator> getCreatorsForSeriesId(
+    Observable<RequestResponse<Creator>> getCreatorsForSeriesId(
             @Path("seriesId") int seriesId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -107,7 +108,7 @@ public interface CreatorService {
             @Query("offset") int offset);
 
     @GET("/v1/public/stories/{storyId}/creators")
-    RequestResponse<Creator> getCreatorsForStoryId(
+    Observable<RequestResponse<Creator>> getCreatorsForStoryId(
             @Path("storyId") int storyId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -128,4 +129,5 @@ public interface CreatorService {
             @Query("limit") int limit,
             @Query("offset") int offset);
 
+    // endregion Observables
 }

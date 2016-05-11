@@ -1,6 +1,6 @@
-package com.n8.marveldroid.RequestServices;
+package com.n8.marveldroid.RequestServices.rx;
 
-import com.n8.marveldroid.ModelObjects.Event;
+import com.n8.marveldroid.ModelObjects.Character;
 import com.n8.marveldroid.RequestResponse;
 
 import java.util.Date;
@@ -10,52 +10,33 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
+public interface RxCharacterService {
 
-public interface RxEventService {
-
-    @GET("/v1/public/events")
-    Observable<RequestResponse<Event>> getEvents(
+    @GET("/v1/public/characters")
+    Observable<RequestResponse<Character>> getCharacters(
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature,
             @Query("name") String name,
             @Query("nameStartsWith") String nameStartsWith,
             @Query("modifiedSince") Date modifiedSince,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
-            @Query("series") String series,
             @Query("comics") String comics,
+            @Query("series") String series,
+            @Query("events") String events,
             @Query("stories") String stories,
             @Query("orderBy") String orderBy,
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("/v1/public/events/{eventId}")
-    Observable<RequestResponse<Event>> getEventForId(
-            @Path("eventId") int eventId,
+    @GET("/v1/public/characters/{characterid}")
+    Observable<RequestResponse<Character>> getCharacterForId(
+            @Path("characterid") int characterId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature);
 
-    @GET("/v1/public/characters/{characterId}/events")
-    Observable<RequestResponse<Event>> getEventsForCharacterId(
-            @Path("characterId") int characterId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("name") String name,
-            @Query("nameStartsWith") String nameStartsWith,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("creators") String creators,
-            @Query("series") String series,
-            @Query("comics") String comics,
-            @Query("stories") String stories,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    @GET("/v1/public/comics/{comicId}/events")
-    Observable<RequestResponse<Event>> getEventsForComicId(
+    @GET("/v1/public/comics/{comicId}/characters")
+    Observable<RequestResponse<Character>> getCharactersForComicId(
             @Path("comicId") int comicId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -63,33 +44,31 @@ public interface RxEventService {
             @Query("name") String name,
             @Query("nameStartsWith") String nameStartsWith,
             @Query("modifiedSince") Date modifiedSince,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
             @Query("series") String series,
+            @Query("events") String events,
             @Query("stories") String stories,
             @Query("orderBy") String orderBy,
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("/v1/public/creators/{creatorId}/events")
-    Observable<RequestResponse<Event>> getEventsForCreatorId(
-            @Path("creatorId") int creatorId,
+    @GET("/v1/public/events/{eventId}/characters")
+    Observable<RequestResponse<Character>> getCharactersForEventId(
+            @Path("eventId") int eventId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature,
             @Query("name") String name,
             @Query("nameStartsWith") String nameStartsWith,
             @Query("modifiedSince") Date modifiedSince,
-            @Query("characters") String characters,
-            @Query("series") String series,
             @Query("comics") String comics,
+            @Query("series") String series,
             @Query("stories") String stories,
             @Query("orderBy") String orderBy,
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("/v1/public/series/{seriesId}/events")
-    Observable<RequestResponse<Event>> getEventsForSeriesId(
+    @GET("/v1/public/series/{seriesId}/characters")
+    Observable<RequestResponse<Character>> getCharactersForSeriesId(
             @Path("seriesId") int seriesId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -97,16 +76,15 @@ public interface RxEventService {
             @Query("name") String name,
             @Query("nameStartsWith") String nameStartsWith,
             @Query("modifiedSince") Date modifiedSince,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
             @Query("comics") String comics,
+            @Query("events") String events,
             @Query("stories") String stories,
             @Query("orderBy") String orderBy,
             @Query("limit") int limit,
             @Query("offset") int offset);
 
-    @GET("/v1/public/stories/{storyId}/events")
-    Observable<RequestResponse<Event>> getEventsForStoryId(
+    @GET("/v1/public/stories/{storyId}/characters")
+    Observable<RequestResponse<Character>> getCharactersForStoryId(
             @Path("storyId") int storyId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -114,10 +92,9 @@ public interface RxEventService {
             @Query("name") String name,
             @Query("nameStartsWith") String nameStartsWith,
             @Query("modifiedSince") Date modifiedSince,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
-            @Query("series") String series,
             @Query("comics") String comics,
+            @Query("series") String series,
+            @Query("events") String events,
             @Query("orderBy") String orderBy,
             @Query("limit") int limit,
             @Query("offset") int offset);

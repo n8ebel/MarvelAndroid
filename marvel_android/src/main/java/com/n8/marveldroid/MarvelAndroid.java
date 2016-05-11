@@ -26,7 +26,7 @@ import com.n8.marveldroid.ModelObjects.Summary.CreatorSummary;
 import com.n8.marveldroid.ModelObjects.Summary.EventSummary;
 import com.n8.marveldroid.ModelObjects.Summary.SeriesSummary;
 import com.n8.marveldroid.ModelObjects.Summary.StorySummary;
-import com.n8.marveldroid.RequestServices.CharacterService;
+import com.n8.marveldroid.RequestServices.RxCharacterService;
 import com.n8.marveldroid.RequestServices.ComicService;
 import com.n8.marveldroid.RequestServices.CreatorService;
 import com.n8.marveldroid.RequestServices.EventService;
@@ -41,6 +41,7 @@ import java.util.Date;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
+import retrofit2.Retrofit;
 
 public class MarvelAndroid {
 
@@ -60,7 +61,7 @@ public class MarvelAndroid {
 
     private static long sCacheSize;
 
-    private RestAdapter mRestAdapter;
+    private Retrofit mRetrofit;
 
     private CharacterEndpoint mCharacterEndpoint;
     private ComicEndpoint mComicEndpoint;
@@ -96,7 +97,7 @@ public class MarvelAndroid {
 
     public CharacterEndpoint getCharacterEndpoint() {
         if (mCharacterEndpoint == null) {
-            mCharacterEndpoint = new CharacterEndpoint(mRestAdapter.create(CharacterService.class), sPublicKey, sPrivateKey);
+            mCharacterEndpoint = new CharacterEndpoint(mRestAdapter.create(RxCharacterService.class), sPublicKey, sPrivateKey);
         }
         return mCharacterEndpoint;
     }

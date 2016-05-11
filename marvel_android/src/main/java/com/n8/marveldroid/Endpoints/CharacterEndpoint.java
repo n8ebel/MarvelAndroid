@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.n8.marveldroid.ModelObjects.Character;
 import com.n8.marveldroid.QueryParams.CharacterQueryParams;
-import com.n8.marveldroid.RequestServices.CharacterService;
+import com.n8.marveldroid.RequestServices.RxCharacterService;
 import com.n8.marveldroid.RequestResponse;
 
 import retrofit.Callback;
@@ -16,9 +16,9 @@ import rx.Observable;
  */
 public class CharacterEndpoint extends BaseEndpoint {
 
-    private CharacterService mCharacterService;
+    private RxCharacterService mCharacterService;
 
-    public CharacterEndpoint(@NonNull CharacterService characterService, @NonNull String publicKey, @NonNull String privateKey) {
+    public CharacterEndpoint(@NonNull RxCharacterService characterService, @NonNull String publicKey, @NonNull String privateKey) {
         super(publicKey, privateKey);
         mCharacterService = characterService;
     }

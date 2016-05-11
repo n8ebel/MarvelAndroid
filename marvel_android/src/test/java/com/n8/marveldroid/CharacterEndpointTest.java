@@ -6,7 +6,7 @@ import com.n8.marveldroid.Endpoints.BaseEndpoint;
 import com.n8.marveldroid.Endpoints.CharacterEndpoint;
 import com.n8.marveldroid.ModelObjects.Character;
 import com.n8.marveldroid.QueryParams.CharacterQueryParams;
-import com.n8.marveldroid.RequestServices.CharacterService;
+import com.n8.marveldroid.RequestServices.RxCharacterService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +38,8 @@ public class CharacterEndpointTest {
     private static final int OTHER_ID = 2002;
 
 
-    @Mock CharacterService mockCharacterService;
+    @Mock
+    RxCharacterService mockCharacterService;
 
     MarvelAndroid mMarvelAndroid;
 
@@ -292,7 +293,7 @@ public class CharacterEndpointTest {
     }
 
     private class MockCharacterEndpoint extends CharacterEndpoint {
-        public MockCharacterEndpoint(@NonNull CharacterService characterService) {
+        public MockCharacterEndpoint(@NonNull RxCharacterService characterService) {
             super(characterService, PUBLIC_KEY, PRIVATE_KEY);
         }
 

@@ -5,26 +5,21 @@ import com.n8.marveldroid.RequestResponse;
 
 import java.util.Date;
 
-import retrofit.Callback;
-import retrofit.http.GET;
-import retrofit.http.Path;
-import retrofit.http.Query;
-import rx.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface StoryService {
 
-    // region Callbacks
-
     @GET("/v1/public/stories/{storyId}")
-    void getStoryForId(
+    RequestResponse<Story> getStoryForId(
         @Path("storyId") int storyId,
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
-        @Query("hash") String hashSignature,
-        Callback<RequestResponse<Story>> callback);
+        @Query("hash") String hashSignature);
 
     @GET("/v1/public/stories")
-    void getStories(
+    RequestResponse<Story> getStories(
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
         @Query("hash") String hashSignature,
@@ -36,11 +31,10 @@ public interface StoryService {
         @Query("characters") String characters,
         @Query("orderBy") String orderBy,
         @Query("limit") int limit,
-        @Query("offset") int offset,
-        Callback<RequestResponse<Story>> callback);
+        @Query("offset") int offset);
 
     @GET("/v1/public/characters/{characterId}/stories")
-    void getStoriesForCharacterId(
+    RequestResponse<Story> getStoriesForCharacterId(
         @Path("characterId") int characterId,
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
@@ -52,11 +46,10 @@ public interface StoryService {
         @Query("creators") String creators,
         @Query("orderBy") String orderBy,
         @Query("limit") int limit,
-        @Query("offset") int offset,
-        Callback<RequestResponse<Story>> callback);
+        @Query("offset") int offset);
 
     @GET("v1/public/comics/{comicId}/stories")
-    void getStoriesForComicId(
+    RequestResponse<Story> getStoriesForComicId(
         @Path("comicId") int comicId,
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
@@ -68,11 +61,10 @@ public interface StoryService {
         @Query("characters") String characters,
         @Query("orderBy") String orderBy,
         @Query("limit") int limit,
-        @Query("offset") int offset,
-        Callback<RequestResponse<Story>> callback);
+        @Query("offset") int offset);
 
     @GET("/v1/public/creators/{creatorId}/stories")
-    void getStoriesForCreatorId(
+    RequestResponse<Story> getStoriesForCreatorId(
         @Path("creatorId") int creatorId,
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
@@ -84,11 +76,10 @@ public interface StoryService {
         @Query("characters") String characters,
         @Query("orderBy") String orderBy,
         @Query("limit") int limit,
-        @Query("offset") int offset,
-        Callback<RequestResponse<Story>> callback);
+        @Query("offset") int offset);
 
     @GET("/v1/public/events/{eventId}/stories")
-    void getStoriesForEventId(
+    RequestResponse<Story> getStoriesForEventId(
         @Path("eventId") int eventId,
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
@@ -100,11 +91,10 @@ public interface StoryService {
         @Query("characters") String characters,
         @Query("orderBy") String orderBy,
         @Query("limit") int limit,
-        @Query("offset") int offset,
-        Callback<RequestResponse<Story>> callback);
+        @Query("offset") int offset);
 
     @GET("/v1/public/series/{seriesId}/stories")
-    void getStoriesForSeriesId(
+    RequestResponse<Story> getStoriesForSeriesId(
         @Path("seriesId") int seriesId,
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
@@ -116,110 +106,6 @@ public interface StoryService {
         @Query("characters") String characters,
         @Query("orderBy") String orderBy,
         @Query("limit") int limit,
-        @Query("offset") int offset,
-        Callback<RequestResponse<Story>> callback);
-
-    // endregion Callbacks
-
-    // region Observables
-
-    @GET("/v1/public/stories/{storyId}")
-    Observable<RequestResponse<Story>> getStoryForId(
-            @Path("storyId") int storyId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature);
-
-    @GET("/v1/public/stories")
-    Observable<RequestResponse<Story>> getStories(
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("comics") String comics,
-            @Query("series") String series,
-            @Query("events") String events,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    @GET("/v1/public/characters/{characterId}/stories")
-    Observable<RequestResponse<Story>> getStoriesForCharacterId(
-            @Path("characterId") int characterId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("comics") String comics,
-            @Query("series") String series,
-            @Query("events") String events,
-            @Query("creators") String creators,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    @GET("/v1/public/comics/{comicId}/stories")
-    Observable<RequestResponse<Story>> getStoriesForComicId(
-            @Path("comicId") int comicId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("series") String series,
-            @Query("events") String events,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    @GET("v1/public/creators/{creatorId}/stories")
-    Observable<RequestResponse<Story>> getStoriesForCreatorId(
-            @Path("creatorId") int creatorId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("comics") String comics,
-            @Query("series") String series,
-            @Query("events") String events,
-            @Query("characters") String characters,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    @GET("/v1/public/events/{eventId}/stories")
-    Observable<RequestResponse<Story>> getStoriesForEventId(
-            @Path("eventId") int eventId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("comics") String comics,
-            @Query("series") String series,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    @GET("/v1/public/series/{seriesId}/stories")
-    Observable<RequestResponse<Story>> getStoriesForSeriesId(
-            @Path("seriesId") int seriesId,
-            @Query("ts") String timestamp,
-            @Query("apikey") String apikey,
-            @Query("hash") String hashSignature,
-            @Query("modifiedSince") Date modifiedSince,
-            @Query("comics") String comics,
-            @Query("events") String events,
-            @Query("creators") String creators,
-            @Query("characters") String characters,
-            @Query("orderBy") String orderBy,
-            @Query("limit") int limit,
-            @Query("offset") int offset);
-
-    // endregion Observables
+        @Query("offset") int offset);
 
 }

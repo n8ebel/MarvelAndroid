@@ -1,6 +1,6 @@
-package com.n8.marveldroid.RequestServices;
+package com.n8.marveldroid.RequestServices.rx;
 
-import com.n8.marveldroid.ModelObjects.*;
+import com.n8.marveldroid.ModelObjects.Comic;
 import com.n8.marveldroid.RequestResponse;
 
 import java.util.Date;
@@ -8,51 +8,52 @@ import java.util.Date;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import rx.Observable;
 
-public interface ComicService {
+public interface RxComicService {
 
     @GET("/v1/public/comics")
-    RequestResponse<Comic> getComics(
-        @Query("ts") String timestamp,
-        @Query("apikey") String apikey,
-        @Query("hash") String hashSignature,
-        @Query("format") String format,
-        @Query("formatType") String formatType,
-        @Query("noVariants") Boolean noVariants,
-        @Query("dateDescriptor") String dateDescriptor,
-        @Query("dateRange") String dateRange,
-        @Query("title") String title,
-        @Query("titleStartsWith") String titleStartsWith,
-        @Query("startYear") Integer startYear,
-        @Query("issueNumber") Integer issueNumber,
-        @Query("diamondCode") String diamondCode,
-        @Query("digitalId") Integer digitalId,
-        @Query("upc") String upc,
-        @Query("isbn") String isbn,
-        @Query("ean") String ean,
-        @Query("issn") String issn,
-        @Query("hasDigitalIssue") Boolean hasDigitalIssue,
-        @Query("modifiedSince") Date modifiedSince,
-        @Query("creators") String creators,
-        @Query("characters") String characters,
-        @Query("series") String series,
-        @Query("events") String events,
-        @Query("stories") String stories,
-        @Query("sharedAppearances") String sharedAppearances,
-        @Query("collaborators") String collaborators,
-        @Query("orderBy") String orderBy,
-        @Query("limit") int limit,
-        @Query("offset") int offset);
+    Observable<RequestResponse<Comic>> getComics(
+            @Query("ts") String timestamp,
+            @Query("apikey") String apikey,
+            @Query("hash") String hashSignature,
+            @Query("format") String format,
+            @Query("formatType") String formatType,
+            @Query("noVariants") Boolean noVariants,
+            @Query("dateDescriptor") String dateDescriptor,
+            @Query("dateRange") String dateRange,
+            @Query("title") String title,
+            @Query("titleStartsWith") String titleStartsWith,
+            @Query("startYear") Integer startYear,
+            @Query("issueNumber") Integer issueNumber,
+            @Query("diamondCode") String diamondCode,
+            @Query("digitalId") Integer digitalId,
+            @Query("upc") String upc,
+            @Query("isbn") String isbn,
+            @Query("ean") String ean,
+            @Query("issn") String issn,
+            @Query("hasDigitalIssue") Boolean hasDigitalIssue,
+            @Query("modifiedSince") Date modifiedSince,
+            @Query("creators") String creators,
+            @Query("characters") String characters,
+            @Query("series") String series,
+            @Query("events") String events,
+            @Query("stories") String stories,
+            @Query("sharedAppearances") String sharedAppearances,
+            @Query("collaborators") String collaborators,
+            @Query("orderBy") String orderBy,
+            @Query("limit") int limit,
+            @Query("offset") int offset);
 
     @GET("/v1/public/comics/{comicId}")
-    RequestResponse<Comic> getComicForId(
+    Observable<RequestResponse<Comic>> getComicForId(
             @Path("comicId") int comicId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature);
 
     @GET("/v1/public/characters/{characterId}/comics")
-    RequestResponse<Comic> getComicsForCharacterId(
+    Observable<RequestResponse<Comic>> getComicsForCharacterId(
             @Path("characterId") int characterId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -85,7 +86,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/creators/{creatorId}/comics")
-    RequestResponse<Comic> getComicsForCreatorId(
+    Observable<RequestResponse<Comic>> getComicsForCreatorId(
             @Path("creatorId") int creatorId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -118,7 +119,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/events/{eventId}/comics")
-    RequestResponse<Comic> getComicsForEventId(
+    Observable<RequestResponse<Comic>> getComicsForEventId(
             @Path("eventId") int eventId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -152,7 +153,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/series/{seriesId}/comics")
-    RequestResponse<Comic> getComicsForSeriesId(
+    Observable<RequestResponse<Comic>> getComicsForSeriesId(
             @Path("seriesId") int seriesId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -185,7 +186,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/stories/{storyId}/comics")
-    RequestResponse<Comic> getComicsForStoryId(
+    Observable<RequestResponse<Comic>> getComicsForStoryId(
             @Path("storyId") int storyId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
