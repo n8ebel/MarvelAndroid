@@ -4,10 +4,11 @@ import android.support.annotation.NonNull;
 
 import com.n8.marveldroid.ModelObjects.Character;
 import com.n8.marveldroid.QueryParams.CharacterQueryParams;
-import com.n8.marveldroid.RequestServices.RxCharacterService;
+import com.n8.marveldroid.RequestServices.CharacterService;
 import com.n8.marveldroid.RequestResponse;
+import com.n8.marveldroid.RequestServices.rx.RxCharacterService;
 
-import retrofit.Callback;
+import retrofit2.Callback;
 import rx.Observable;
 
 /**
@@ -16,11 +17,13 @@ import rx.Observable;
  */
 public class CharacterEndpoint extends BaseEndpoint {
 
-    private RxCharacterService mCharacterService;
+    private CharacterService mCharacterService;
+    private RxCharacterService mRxCharacterService;
 
-    public CharacterEndpoint(@NonNull RxCharacterService characterService, @NonNull String publicKey, @NonNull String privateKey) {
+    public CharacterEndpoint(@NonNull CharacterService characterService, @NonNull RxCharacterService rxCharacterService, @NonNull String publicKey, @NonNull String privateKey) {
         super(publicKey, privateKey);
         mCharacterService = characterService;
+        mRxCharacterService = rxCharacterService;
     }
 
     /**
@@ -34,8 +37,7 @@ public class CharacterEndpoint extends BaseEndpoint {
                 characterId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
-                getHashSignature(),
-                callback);
+                getHashSignature());
     }
 
     /**
@@ -45,7 +47,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<RequestResponse<Character>> getCharacter(int characterId) {
-        return mCharacterService.getCharacterForId(
+        return mRxCharacterService.getCharacterForId(
                 characterId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -72,8 +74,7 @@ public class CharacterEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getEvents()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -83,7 +84,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<RequestResponse<Character>> getCharacters(CharacterQueryParams queryParams) {
-        return mCharacterService.getCharacters(
+        return mRxCharacterService.getCharacters(
                 String.valueOf(getTimestamp()),
                 getApiKey(),
                 getHashSignature(),
@@ -120,8 +121,7 @@ public class CharacterEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getStories()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -132,7 +132,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<RequestResponse<Character>> getCharactersForComicId(int comicId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForComicId(
+        return mRxCharacterService.getCharactersForComicId(
                 comicId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -169,8 +169,7 @@ public class CharacterEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getStories()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -181,7 +180,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<RequestResponse<Character>> getCharactersForEventId(int eventId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForEventId(
+        return mRxCharacterService.getCharactersForEventId(
                 eventId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -218,8 +217,7 @@ public class CharacterEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getStories()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -230,7 +228,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<RequestResponse<Character>> getCharactersForSeriesId(int seriesId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForSeriesId(
+        return mRxCharacterService.getCharactersForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -267,8 +265,7 @@ public class CharacterEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getEvents()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -279,7 +276,7 @@ public class CharacterEndpoint extends BaseEndpoint {
      * @return An observable of the character service response.
      */
     public Observable<RequestResponse<Character>> getCharactersForStoryId(int storyId, CharacterQueryParams queryParams) {
-        return mCharacterService.getCharactersForStoryId(
+        return mRxCharacterService.getCharactersForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),

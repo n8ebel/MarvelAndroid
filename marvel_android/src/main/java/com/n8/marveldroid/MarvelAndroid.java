@@ -26,21 +26,17 @@ import com.n8.marveldroid.ModelObjects.Summary.CreatorSummary;
 import com.n8.marveldroid.ModelObjects.Summary.EventSummary;
 import com.n8.marveldroid.ModelObjects.Summary.SeriesSummary;
 import com.n8.marveldroid.ModelObjects.Summary.StorySummary;
-import com.n8.marveldroid.RequestServices.RxCharacterService;
+import com.n8.marveldroid.RequestServices.CharacterService;
 import com.n8.marveldroid.RequestServices.ComicService;
 import com.n8.marveldroid.RequestServices.CreatorService;
 import com.n8.marveldroid.RequestServices.EventService;
 import com.n8.marveldroid.RequestServices.SeriesService;
 import com.n8.marveldroid.RequestServices.StoryService;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.OkHttpClient;
+import com.n8.marveldroid.RequestServices.rx.RxCharacterService;
 
 import java.io.IOException;
 import java.util.Date;
 
-import retrofit.RestAdapter;
-import retrofit.client.OkClient;
-import retrofit.converter.GsonConverter;
 import retrofit2.Retrofit;
 
 public class MarvelAndroid {
@@ -97,42 +93,46 @@ public class MarvelAndroid {
 
     public CharacterEndpoint getCharacterEndpoint() {
         if (mCharacterEndpoint == null) {
-            mCharacterEndpoint = new CharacterEndpoint(mRestAdapter.create(RxCharacterService.class), sPublicKey, sPrivateKey);
+            mCharacterEndpoint =
+                    new CharacterEndpoint(mRetrofit.create(CharacterService.class),
+                            mRetrofit.create(RxCharacterService.class),
+                            sPublicKey,
+                            sPrivateKey);
         }
         return mCharacterEndpoint;
     }
 
     public ComicEndpoint getComicEndpoint() {
         if (mComicEndpoint == null) {
-            mComicEndpoint = new ComicEndpoint(mRestAdapter.create(ComicService.class), sPublicKey, sPrivateKey);
+            mComicEndpoint = new ComicEndpoint(mRetrofit.create(ComicService.class), sPublicKey, sPrivateKey);
         }
         return mComicEndpoint;
     }
 
     public CreatorEndpoint getCreatorEndpoint() {
         if (mCreatorEndpoint == null) {
-            mCreatorEndpoint = new CreatorEndpoint(mRestAdapter.create(CreatorService.class), sPublicKey, sPrivateKey);
+            mCreatorEndpoint = new CreatorEndpoint(mRetrofit.create(CreatorService.class), sPublicKey, sPrivateKey);
         }
         return mCreatorEndpoint;
     }
 
     public EventEndpoint getEventEndpoint() {
         if (mEventEndpoint == null) {
-            mEventEndpoint = new EventEndpoint(mRestAdapter.create(EventService.class), sPublicKey, sPrivateKey);
+            mEventEndpoint = new EventEndpoint(mRetrofit.create(EventService.class), sPublicKey, sPrivateKey);
         }
         return mEventEndpoint;
     }
 
     public SeriesEndpoint getSeriesEndpoint() {
         if (mSeriesEndpoint == null) {
-            mSeriesEndpoint = new SeriesEndpoint(mRestAdapter.create(SeriesService.class), sPublicKey, sPrivateKey);
+            mSeriesEndpoint = new SeriesEndpoint(mRetrofit.create(SeriesService.class), sPublicKey, sPrivateKey);
         }
         return mSeriesEndpoint;
     }
 
     public StoryEndpoint getStoryEndpoint() {
         if (mStoryEndpoint == null) {
-            mStoryEndpoint = new StoryEndpoint(mRestAdapter.create(StoryService.class), sPublicKey, sPrivateKey);
+            mStoryEndpoint = new StoryEndpoint(mRetrofit.create(StoryService.class), sPublicKey, sPrivateKey);
         }
         return mStoryEndpoint;
     }
