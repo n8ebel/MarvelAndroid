@@ -33,6 +33,7 @@ import com.n8.marveldroid.RequestServices.EventService;
 import com.n8.marveldroid.RequestServices.SeriesService;
 import com.n8.marveldroid.RequestServices.StoryService;
 import com.n8.marveldroid.RequestServices.rx.RxCharacterService;
+import com.n8.marveldroid.RequestServices.rx.RxComicService;
 
 import java.io.IOException;
 import java.util.Date;
@@ -104,7 +105,12 @@ public class MarvelAndroid {
 
     public ComicEndpoint getComicEndpoint() {
         if (mComicEndpoint == null) {
-            mComicEndpoint = new ComicEndpoint(mRetrofit.create(ComicService.class), sPublicKey, sPrivateKey);
+            mComicEndpoint =
+                    new ComicEndpoint(
+                            mRetrofit.create(ComicService.class),
+                            mRetrofit.create(RxComicService.class),
+                            sPublicKey,
+                            sPrivateKey);
         }
         return mComicEndpoint;
     }

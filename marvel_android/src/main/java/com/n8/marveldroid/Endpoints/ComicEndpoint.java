@@ -7,8 +7,9 @@ import com.n8.marveldroid.ModelObjects.Comic;
 import com.n8.marveldroid.QueryParams.ComicQueryParams;
 import com.n8.marveldroid.RequestServices.ComicService;
 import com.n8.marveldroid.RequestResponse;
+import com.n8.marveldroid.RequestServices.rx.RxComicService;
 
-import retrofit.Callback;
+import retrofit2.Callback;
 import rx.Observable;
 
 /**
@@ -18,8 +19,13 @@ import rx.Observable;
 public class ComicEndpoint extends BaseEndpoint {
 
     private ComicService mComicService;
+    private RxComicService mRxComicService;
 
-    public ComicEndpoint(@NonNull ComicService comicService, @NonNull String publicKey, @NonNull String privateKey) {
+    public ComicEndpoint(
+            @NonNull ComicService comicService,
+            @NonNull RxComicService rxComicService,
+            @NonNull String publicKey,
+            @NonNull String privateKey) {
         super(publicKey, privateKey);
         mComicService = comicService;
     }
@@ -35,8 +41,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 comicId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
-                getHashSignature(),
-                callback);
+                getHashSignature()).enqueue(callback);
     }
 
     /**
@@ -46,7 +51,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the character {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComic(int comicId) {
-        return mComicService.getComicForId(
+        return mRxComicService.getComicForId(
                 comicId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -90,8 +95,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getCollaborators()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -101,7 +105,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the comic {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComics(ComicQueryParams queryParams) {
-        return mComicService.getComics(
+        return mRxComicService.getComics(
                 String.valueOf(getTimestamp()),
                 getApiKey(),
                 getHashSignature(),
@@ -172,8 +176,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getCollaborators()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -184,7 +187,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the comic {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComicsForCharacterId(int characterId, ComicQueryParams queryParams) {
-        return mComicService.getComicsForCharacterId(
+        return mRxComicService.getComicsForCharacterId(
                 characterId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -255,8 +258,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getCollaborators()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -267,7 +269,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the comic {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComicsForCreatorId(int creatorId, ComicQueryParams queryParams) {
-        return mComicService.getComicsForCreatorId(
+        return mRxComicService.getComicsForCreatorId(
                 creatorId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -339,8 +341,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getCollaborators()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -351,7 +352,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the comic {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComicsForEventId(int eventId, ComicQueryParams queryParams) {
-        return mComicService.getComicsForEventId(
+        return mRxComicService.getComicsForEventId(
                 eventId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -423,8 +424,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getCollaborators()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -435,7 +435,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the comic {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComicsForSeriesId(int seriesId, ComicQueryParams queryParams) {
-        return mComicService.getComicsForSeriesId(
+        return mRxComicService.getComicsForSeriesId(
                 seriesId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),
@@ -506,8 +506,7 @@ public class ComicEndpoint extends BaseEndpoint {
                 getCommaSeparatedList(queryParams.getCollaborators()),
                 queryParams.getOrderBy().getValue(),
                 queryParams.getLimit(),
-                queryParams.getOffset(),
-                callback);
+                queryParams.getOffset()).enqueue(callback);
     }
 
     /**
@@ -518,7 +517,7 @@ public class ComicEndpoint extends BaseEndpoint {
      * @return An observable of the comic {@link RequestResponse}.
      */
     public Observable<RequestResponse<Comic>> getComicsForStoryId(int storyId, ComicQueryParams queryParams) {
-        return mComicService.getComicsForStoryId(
+        return mRxComicService.getComicsForStoryId(
                 storyId,
                 String.valueOf(getTimestamp()),
                 getApiKey(),

@@ -5,6 +5,7 @@ import com.n8.marveldroid.RequestResponse;
 
 import java.util.Date;
 
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -12,7 +13,7 @@ import retrofit2.http.Query;
 public interface ComicService {
 
     @GET("/v1/public/comics")
-    RequestResponse<Comic> getComics(
+    Call<RequestResponse<Comic>> getComics(
         @Query("ts") String timestamp,
         @Query("apikey") String apikey,
         @Query("hash") String hashSignature,
@@ -45,14 +46,14 @@ public interface ComicService {
         @Query("offset") int offset);
 
     @GET("/v1/public/comics/{comicId}")
-    RequestResponse<Comic> getComicForId(
+    Call<RequestResponse<Comic>> getComicForId(
             @Path("comicId") int comicId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
             @Query("hash") String hashSignature);
 
     @GET("/v1/public/characters/{characterId}/comics")
-    RequestResponse<Comic> getComicsForCharacterId(
+    Call<RequestResponse<Comic>> getComicsForCharacterId(
             @Path("characterId") int characterId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -85,7 +86,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/creators/{creatorId}/comics")
-    RequestResponse<Comic> getComicsForCreatorId(
+    Call<RequestResponse<Comic>> getComicsForCreatorId(
             @Path("creatorId") int creatorId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -118,7 +119,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/events/{eventId}/comics")
-    RequestResponse<Comic> getComicsForEventId(
+    Call<RequestResponse<Comic>> getComicsForEventId(
             @Path("eventId") int eventId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -152,7 +153,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/series/{seriesId}/comics")
-    RequestResponse<Comic> getComicsForSeriesId(
+    Call<RequestResponse<Comic>> getComicsForSeriesId(
             @Path("seriesId") int seriesId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
@@ -185,7 +186,7 @@ public interface ComicService {
             @Query("offset") int offset);
 
     @GET("/v1/public/stories/{storyId}/comics")
-    RequestResponse<Comic> getComicsForStoryId(
+    Call<RequestResponse<Comic>> getComicsForStoryId(
             @Path("storyId") int storyId,
             @Query("ts") String timestamp,
             @Query("apikey") String apikey,
