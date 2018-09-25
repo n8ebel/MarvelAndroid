@@ -26,11 +26,7 @@ public class MainActivity extends AppCompatActivity {
         /*
          * You will need a public and private key from http://developer.marvel.com/
          */
-        MarvelAndroid.initialize(
-                this,
-                getString(R.string.private_key),
-                getString(R.string.public_key),
-                5 * 1024 * 1024);
+        MarvelAndroid.initialize(this, BuildConfig.PRIVATE_KEY, BuildConfig.PUBLIC_KEY, 5 * 1024 * 1024);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewPager);
         PagerAdapter adapter = new MarvelousPagerAdapter(getSupportFragmentManager());
